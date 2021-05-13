@@ -1,0 +1,66 @@
+// todo (to commit):
+
+    - add bookmarks to root functionality / or disable adding bookmarks to root
+
+    - bookmark managing functionality
+        - full bookmark add button
+        - edit bookmark page
+        - delete bookmark functionality
+
+// todo-done (committed):
+
+    + new folder button fixed
+    + all folders tree div disabled
+    + code cleaning
+
+    + add folders to root functionality fixed
+
+    + new folder button functionality
+    + code updates / bugs found
+
+    + folder path bugs fixing
+    + add a href to the path elements
+
+    + bookmark div style created
+    + js code cleaning
+
+    + quick bookmark add button
+        - quick bookmark post method to rest controller
+            + send String with url to the controller
+            * response 400/415 | content type  error when send JSON
+            * Failed to evaluate Jackson deserialization for type [[simple type, class pl.krzysztofskul.foobar._bkmrks.bookmark.Bookmark]]: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot handle managed/back reference 'defaultReference': no back reference property found from type [collection type; class java.util.List, contains [simple type, class pl.krzysztofskul.foobar._bkmrks.folder.Folder]]
+        + refresh actual folder page
+
+    - folder path recursively generate
+        - with links
+            + for root
+            + update root page for only 1st level folders
+
+    - folder page
+        - folders manipulation functions
+            + go to folder button functionality
+        + folder path recursively generate
+
+    + all folders page (by js/jquery)
+        + go to folder button ...
+            + get id to load folder
+            + get folder form db
+            + regenerate page with current folder
+
+    - all folders page (by js/jquery)
+        + front-end/code updates
+
+    - all folders page (by js/jquery)
+        + actual folder page with (@JsonIdentityReference(alwaysAsId = true))
+
+    - all folders page (by js/jquery)
+        + show all 1st level folders with sub-folders and bookmarks inside the tree view div
+        + show actual folder inside actual folder div
+
+    - all folders page (by js/jquery)
+        + load all folders using ajax GET method
+
+    + /bookmarks-app/home
+        + index.html
+        + header.html
+        + footer.html

@@ -1,0 +1,47 @@
+/**
+BOOKMARK CARD
+ */
+
+.card-bookmark {
+    display: inline-block;
+    width: 18rem;
+    margin: 5px;
+}
+.card-bookmark .card-header {
+    /*background-color: red; !*test ok*!*/
+    font-size: 12px;
+    height: 50px;
+}
+
+.card-bookmark .card-header .bookmark-name {
+    /*background-color: red; !*test ok*!*/
+    display: inline-block;
+    width: 60%;
+}
+
+.card-bookmark .card-header .bookmark-buttons {
+    /*background-color: red; !*test ok*!*/
+    display: inline-block;
+    border-left: solid 1px lightgrey;
+    float: right;
+}
+
+.card-bookmark .card-body {
+    font-size: 12px;
+    height: 50px;
+}
+
+.card-bookmark .card-footer {
+    height: 35px;
+    font-size: 10px;
+    color: #505050;
+    font-style: italic;
+}
+
+/**
+NEW FOLDER BUTTON
+ */
+
+#btn-new-folder {
+
+}
