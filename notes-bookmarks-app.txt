@@ -1,13 +1,20 @@
 // todo (to commit):
 
-    - add bookmarks to root functionality / or disable adding bookmarks to root
-
     - bookmark managing functionality
         - full bookmark add button
         - edit bookmark page
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.1.0-X
+    + spring boot security configuration added
+        + login for admin default functionality
+        + logout functionality
+    + disable button for adding bookmarks to root
+
+
+// arch. pre-initial commit:
 
     + new folder button fixed
     + all folders tree div disabled

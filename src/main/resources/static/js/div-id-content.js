@@ -88,16 +88,17 @@ $(document).ready(function () {
     function recreateContentDiv() {
         $("#content").empty().append(
             "<div class='row ml-1 mr-1'>" +
-            "<div class='col-3 border p-0'>" +
-            "<div id='folders-tree' class=' m-0' style='min-height: 480px'>" +
-            "<h4 class='border-bottom border-top bg-light text-center'>ALL FOLDERS TREE</h4>" +
-            "</div>" +
-            "</div> " +
-            "<div class='col-9 border p-0'>" +
-            "<div id='folder-actual-div' class='border-left m-0 p-3' style='min-height: 480px'>" +
-            "<h4 class='border-bottom border-top text-center bg-light'>FOLDER</h4>" +
-            "</div>" +
-            "</div> " +
+                "<div class='col-3 border p-0'>" +
+                    "<div id='folders-tree' class=' m-0' style='min-height: 480px'>" +
+                        "<h4 class='border-bottom border-top bg-light text-center'>ALL FOLDERS TREE</h4>" +
+                        "<p class='border-bottom border-top bg-light text-center'>in progress ...</p>" +
+                    "</div>" +
+                "</div> " +
+                "<div class='col-9 border p-0'>" +
+                    "<div id='folder-actual-div' class='border-left m-0 p-3' style='min-height: 480px'>" +
+                        "<h4 class='border-bottom border-top text-center bg-light'>FOLDER</h4>" +
+                    "</div>" +
+                "</div> " +
             "</div>"
         );
 
@@ -106,7 +107,7 @@ $(document).ready(function () {
     function showFoldersTree(folderList) {
         // alert("show folders tree function test ..."); // ok
         folderList.forEach(function (element) {
-            $("#folders-tree").append(
+            $("#folders-tree").empty().append(
                 "<p class='m-1'>ID: " + element.id + " | " + element.name
             );
         });
@@ -438,6 +439,10 @@ $(document).ready(function () {
             showFolderPath(actualFolder);
             showSubfolders(actualFolder);
             showBookmarks(actualFolder);
+            if (actualFolder == null) {
+                $("#input-url").attr("disabled", true);
+                $("#button-url").attr("disabled", true);
+            }
         });
 
     }
