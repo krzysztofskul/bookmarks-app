@@ -8,6 +8,10 @@
 // todo-done (committed):
 
 # 0.1.0-X
+    + in memory authentication using spring security for admin and userguest
+    + get user logged in
+
+# 0.1.0-X
     + spring boot security configuration added
         + login for admin default functionality
         + logout functionality

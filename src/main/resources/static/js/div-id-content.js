@@ -12,10 +12,24 @@ $(document).ready(function () {
      */
 
     function init() {
+        getUserLoggedIn();
         getAllFolders();
         get1stLevelFolders();
         recreateContentDiv();
         generateActualFolderDiv(null);
+    }
+
+    function getUserLoggedIn() {
+        $.ajax({
+            url: "/bookmarks-app/user-logged-in",
+            data: {},
+            type: "GET",
+            dataType: "text"
+        }).done(function(username) {
+            console.log("User logged in: "+username);
+        }).fail(function () {
+            console.log("Not recognized who is logged in!");
+        });
     }
 
     function getAllFolders() {
