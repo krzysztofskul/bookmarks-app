@@ -1,11 +1,26 @@
 // todo (to commit):
 
+# 0.1.0-X
+    - front-end updates
+        - bookmark edit functionality ...
+            - bookmark-details.js- welcome text in header
+        - my account button to activate
+        - own login page
+            - login as an user-guest button
+
     - bookmark managing functionality
         - full bookmark add button
         - edit bookmark page
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.1.0-X
+    + in memory authentication updates
+    + updates for mvc/jsp functionality in spring boot
+    + bookmark edit functionality
+        + bookmark jsp edit page
+        + bookmark controller add
 
 # 0.1.0-X
     + in memory authentication using spring security for admin and userguest

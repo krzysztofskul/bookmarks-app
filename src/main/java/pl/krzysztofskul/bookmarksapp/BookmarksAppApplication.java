@@ -2,9 +2,18 @@ package pl.krzysztofskul.bookmarksapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
-public class BookmarksAppApplication {
+@SpringBootApplication(scanBasePackages = {"pl.krzysztofskul"})
+public class BookmarksAppApplication extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder)
+    {
+        return builder.sources(BookmarksAppApplication.class);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(BookmarksAppApplication.class, args);

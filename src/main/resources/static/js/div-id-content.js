@@ -86,7 +86,7 @@ $(document).ready(function () {
             "<div class='bookmark-name'>"+bookmark.name+"</div>" +
             "<div class='bookmark-buttons'>" +
             "<a href='#' class='d-inline-block text-danger pl-1'>DEL</a>" +
-            "<a href='#' class='d-inline-block text-primary pl-1'>EDIT</a>" +
+            "<a href='/bookmarks-app/bookmark-details/"+bookmark.id+"' class='d-inline-block text-primary pl-1' target='_blank'>EDIT</a>" +
             "<a href='#' class='d-inline-block text-success pl-1'>OPEN</a>" +
             "</div> " +
             "</div>"+
