@@ -91,7 +91,7 @@ $(document).ready(function () {
             "</div> " +
             "</div>"+
             "<div class='card-body'>"+
-            "<a href='#'>"+bookmark.url+"</a>" +
+            "<a href='#' class='bookmarkUrl'>"+bookmark.url+"</a>" +
             "</div>" +
             "<div class='card-footer'>" +
             "<p>"+bookmark.description+"</p>"+
@@ -190,8 +190,9 @@ $(document).ready(function () {
             }
         }).done(function(){
             generateActualFolderDiv(actualFolder);
-        }).fail(function() {
+        }).fail(function(xhr, status, error) {
             alert("Error while adding new bookmark to db!");
+            console.log(xhr.status);
         });
     }
 
@@ -392,6 +393,8 @@ $(document).ready(function () {
                     $("#folder-actual-div").append(
                         createBookmarkDiv(e)
                     );
+                    let bookmarkUrlLink = $(".bookmarkUrl").value();
+                    $(".bookmarkUrl").attr("href", bookmarkUrlLink);
                 });
             }
         }

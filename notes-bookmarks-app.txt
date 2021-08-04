@@ -1,6 +1,8 @@
 // todo (to commit):
 
 # 0.1.0-X
+    - bookmark <a href> update for a correct link ...
+
     - front-end updates
         - bookmark edit functionality ...
             - bookmark-details.js- welcome text in header
@@ -14,6 +16,11 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.1.0-X
+    + in memory authentication updates
+        + WebSecurityConfig: csrf().disable()
+    + pom.xml modifications (java 8)
 
 # 0.1.0-X
     + in memory authentication updates
