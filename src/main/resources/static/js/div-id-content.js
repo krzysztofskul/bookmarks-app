@@ -393,8 +393,11 @@ $(document).ready(function () {
                     $("#folder-actual-div").append(
                         createBookmarkDiv(e)
                     );
-                    let bookmarkUrlLink = $(".bookmarkUrl").value();
-                    $(".bookmarkUrl").attr("href", bookmarkUrlLink);
+                    let bookmarkUrl = $(".bookmarkUrl");
+                    bookmarkUrl.on("click", function (){
+                        let linkToOpen = this.innerText;
+                        window.open(linkToOpen);
+                    });
                 });
             }
         }
