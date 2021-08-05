@@ -212,7 +212,16 @@ $(document).ready(function () {
             "</div>"
         );
 
+        let inputUrl = $("#input-url");
         let buttonNewUrl = $("#button-url");
+
+        inputUrl.on("keyup", function (event){
+           if (event.keyCode === 13) { // pressed enter key
+               alert("test keyup!");
+               event.preventDefault();
+               buttonNewUrl.click();
+           }
+        });
 
         buttonNewUrl.on("click", function (e) {
             e.preventDefault();
