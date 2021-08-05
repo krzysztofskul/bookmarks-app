@@ -1,11 +1,5 @@
 // todo (to commit):
 
-# 0.1.2
-    - check input field for quick new url:
-        - if has "https://"
-        - if is not empty
-        - if is correct www address
-
 #
     - front-end updates
         - bookmark edit functionality ...
@@ -20,6 +14,10 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.1.2
+    + basic input field check for quick new url:
+        + if url starts "https://" or http://
 
 # 0.1.1
     + readme.md updates

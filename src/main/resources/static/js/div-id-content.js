@@ -181,19 +181,38 @@ $(document).ready(function () {
     }
 
     function saveNewUrl(newUrlToSave) {
-        $.ajax({
-            url: "/bookmarks-app/bookmark/quick-add-to-folder/"+actualFolderId,
-            dataType: "JSON",
-            type: "POST",
-            data: {
-                'url': newUrlToSave
-            }
-        }).done(function(){
-            generateActualFolderDiv(actualFolder);
-        }).fail(function(xhr, status, error) {
-            alert("Error while adding new bookmark to db!");
-            console.log(xhr.status);
-        });
+
+        function cancelSave() {
+            alert("Wrong url!")
+        }
+
+        function save(newUrlToSave) {
+            $.ajax({
+                url: "/bookmarks-app/bookmark/quick-add-to-folder/"+actualFolderId,
+                dataType: "JSON",
+                type: "POST",
+                data: {
+                    'url': newUrlToSave
+                }
+            }).done(function(){
+                generateActualFolderDiv(actualFolder);
+            }).fail(function(xhr, status, error) {
+                alert("Error while adding new bookmark to db!");
+                console.log(xhr.status);
+            });
+        }
+
+        if (newUrlToSave.startsWith("https://") || newUrlToSave.startsWith("http://")) {
+            save(newUrlToSave);
+            return;
+        }
+        if (newUrlToSave.startsWith("www.")){
+            save("https://"+newUrlToSave)
+            return;
+        }
+
+        cancelSave();
+
     }
 
     function createFolderHeader() {
@@ -217,7 +236,6 @@ $(document).ready(function () {
 
         inputUrl.on("keyup", function (event){
            if (event.keyCode === 13) { // pressed enter key
-               alert("test keyup!");
                event.preventDefault();
                buttonNewUrl.click();
            }
