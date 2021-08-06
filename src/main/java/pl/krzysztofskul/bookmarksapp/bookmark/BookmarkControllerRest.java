@@ -32,4 +32,11 @@ public class BookmarkControllerRest {
         return bookmarkService.save(newBookmarkToSave);
     }
 
+    @DeleteMapping("/bookmark/{bookmarkId}")
+    public void delete(
+            @PathVariable Long bookmarkId
+    ) {
+        bookmarkService.delete(bookmarkId);
+    }
+
 }

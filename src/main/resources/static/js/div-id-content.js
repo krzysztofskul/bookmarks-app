@@ -85,7 +85,7 @@ $(document).ready(function () {
             "<div class='card-header'>" +
             "<div class='bookmark-name'>"+bookmark.name+"</div>" +
             "<div class='bookmark-buttons'>" +
-            "<a href='#' class='d-inline-block text-danger pl-1'>DEL</a>" +
+            "<a href='#' class='d-inline-block pl-1' id='delete-bookmark-btn"+bookmark.id+"'>DEL</a>" +
             "<a href='/bookmarks-app/bookmark-details/"+bookmark.id+"' class='d-inline-block text-primary pl-1' target='_blank'>EDIT</a>" +
             "<a href='#' class='d-inline-block text-success pl-1'>OPEN</a>" +
             "</div> " +
@@ -403,6 +403,18 @@ $(document).ready(function () {
 
     }
 
+    function deleteBookmark(id) {
+        //alert("Test delete bookmark button!");
+        $.ajax({
+           url: "/bookmarks-app/bookmark/"+id,
+           type: 'DELETE'
+        }).done(function (){
+            alert("Bookmark deleted!");
+        }).fail(function (){
+            alert("Error while deleting bookmark!");
+        });
+    }
+
     function showBookmarks(folder) {
 
         function appendBookmarksHeaderDiv() {
@@ -424,6 +436,11 @@ $(document).ready(function () {
                     bookmarkUrl.on("click", function (){
                         let linkToOpen = this.innerText;
                         window.open(linkToOpen);
+                    });
+                    let bookmarkDelBtn = $('#delete-bookmark-btn'+e.id);
+                    bookmarkDelBtn.on("click", function (){
+                       //alert("test delete bookmark id="+e.id+" button!"); // ok
+                        deleteBookmark(e.id);
                     });
                 });
             }

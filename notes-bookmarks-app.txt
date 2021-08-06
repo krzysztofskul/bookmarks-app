@@ -1,12 +1,20 @@
 // todo (to commit):
 
+# 0.1.4
+    - refresh the page after delete bookmark
+
 #
+    - sign up functionality
+    - login as a guest button on login page
     - front-end updates
+        - bookmark delete
         - bookmark edit functionality ...
             - bookmark-details.js- welcome text in header
         - my account button to activate
         - own login page
             - login as an user-guest button
+
+    - folders managing
 
     - bookmark managing functionality
         - full bookmark add button
@@ -14,6 +22,11 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.1.3
+    + readme.md updated
+    + application.properties updated
+    + delete bookmark functionality added
 
 # 0.1.2
     + basic input field check for quick new url:
