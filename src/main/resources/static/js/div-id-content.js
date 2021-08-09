@@ -403,13 +403,15 @@ $(document).ready(function () {
 
     }
 
-    function deleteBookmark(id) {
+    function deleteBookmark(id, backToFolderId) {
         //alert("Test delete bookmark button!");
         $.ajax({
            url: "/bookmarks-app/bookmark/"+id,
            type: 'DELETE'
         }).done(function (){
             alert("Bookmark deleted!");
+            //window.location.reload(true);
+            generateActualFolderDivByFolderId(backToFolderId);
         }).fail(function (){
             alert("Error while deleting bookmark!");
         });
@@ -437,10 +439,12 @@ $(document).ready(function () {
                         let linkToOpen = this.innerText;
                         window.open(linkToOpen);
                     });
+                    let folderId = folder.id;
                     let bookmarkDelBtn = $('#delete-bookmark-btn'+e.id);
                     bookmarkDelBtn.on("click", function (){
                        //alert("test delete bookmark id="+e.id+" button!"); // ok
-                        deleteBookmark(e.id);
+                        deleteBookmark(e.id, folderId);
+
                     });
                 });
             }
@@ -482,6 +486,52 @@ $(document).ready(function () {
             dataType: "JSON"
         }).done(function (dataGet) {
             if (folder != null) { // get folder
+                actualFolder = dataGet;
+                actualFolderId = dataGet.id;
+            } else { // get folders list
+                folder1stLeverList = dataGet;
+                actualFolderId = 0;
+                actualFolder = null;
+            }
+        }).fail(function () {
+            if (folder != null) { // get folder
+                alert("error while loading folder!");
+            } else { // get folders list
+                alert("error while loading folders!");
+            }
+            actualFolderId = 0;
+            actualFolder = null;
+        }).always(function () {
+            $('#folder-actual-div').empty();
+            createFolderHeader();
+            showFolderPath(actualFolder);
+            showSubfolders(actualFolder);
+            showBookmarks(actualFolder);
+            if (actualFolder == null) {
+                $("#input-url").attr("disabled", true);
+                $("#button-url").attr("disabled", true);
+            }
+        });
+
+    }
+
+    function generateActualFolderDivByFolderId(folderId) {
+
+        let url;
+
+        if (folderId != null) {
+            url = "/bookmarks-app/folder/"+folderId;
+        } else if (folderId == null) {
+            url = "/bookmarks-app/folders/1st-level"
+        }
+
+        $.ajax({
+            url: url,
+            method: "GET",
+            data: {},
+            dataType: "JSON"
+        }).done(function (dataGet) {
+            if (folderId != null) { // get folder
                 actualFolder = dataGet;
                 actualFolderId = dataGet.id;
             } else { // get folders list
