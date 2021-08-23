@@ -26,18 +26,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable()
             .authorizeRequests()
-//            .antMatchers("/**").hasAnyRole("ADMIN", "USER")
-            .antMatchers("/").hasAnyRole("ADMIN", "USER")
+            .antMatchers("/**").hasAnyRole("ADMIN", "USER")
             .anyRequest().authenticated()
             .and()
-                .formLogin().loginPage("/login.html").permitAll()
+                .formLogin().loginPage("/login.html").permitAll().loginProcessingUrl("/perform_login")
+                //No need to add a LoginController.
+                // Needed because if you don't put this, when you call the POST to login you will be redirected to the login.html page.
                 .defaultSuccessUrl("/bookmarks-app/index.html", true)
                 .failureUrl("/login.html").permitAll()
             .and()
             .logout().permitAll().logoutRequestMatcher(new AntPathRequestMatcher("/logout")
         );
-
-
     }
+
+
 
 }
