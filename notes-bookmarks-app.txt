@@ -1,6 +1,9 @@
 // todo (to commit):
 
 #
+    - own login page test...
+
+#
     - sign up functionality
     - login as a guest button on login page
     - front-end updates
@@ -19,6 +22,10 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.1.4-1
+    + update database
+    - own login page test...
 
 # 0.1.4
     + refresh the page after delete the bookmark

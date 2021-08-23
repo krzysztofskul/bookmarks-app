@@ -23,14 +23,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable().authorizeRequests()
+        http
+            .csrf().disable()
+            .authorizeRequests()
+//            .antMatchers("/**").hasAnyRole("ADMIN", "USER")
+            .antMatchers("/").hasAnyRole("ADMIN", "USER")
             .anyRequest().authenticated()
             .and()
-            .formLogin()
+                .formLogin().loginPage("/login.html").permitAll()
+                .defaultSuccessUrl("/bookmarks-app/index.html", true)
+                .failureUrl("/login.html").permitAll()
             .and()
-            .logout()
-            .permitAll()
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout")
+            .logout().permitAll().logoutRequestMatcher(new AntPathRequestMatcher("/logout")
         );
 
 
