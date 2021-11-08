@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @Configuration
 @EnableWebSecurity
@@ -30,9 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated()
             .and()
                 .formLogin().loginPage("/login.html").permitAll().loginProcessingUrl("/perform_login")
-                //No need to add a LoginController.
-                // Needed because if you don't put this, when you call the POST to login you will be redirected to the login.html page.
-                .defaultSuccessUrl("/bookmarks-app/index.html", true)
+                .defaultSuccessUrl("/index.html", true)
                 .failureUrl("/login.html").permitAll()
             .and()
             .logout().permitAll().logoutRequestMatcher(new AntPathRequestMatcher("/logout")

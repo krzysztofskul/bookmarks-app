@@ -1,7 +1,8 @@
 // todo (to commit):
 
-#
-    - own login page test...
+# 0.1.4-1
+    + own login page
+    - login as a guest functionality (js file)
 
 #
     - sign up functionality
