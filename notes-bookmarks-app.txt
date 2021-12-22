@@ -1,8 +1,7 @@
 // todo (to commit):
 
-# 0.1.4-1
-    + own login page
-    - login as a guest functionality (js file)
+# 0.1.6
+    - login as a guest functionality using JS
 
 #
     - sign up functionality
@@ -23,6 +22,9 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.1.5
+    + Amazon AWS configuration
 
 # 0.1.4-1
     + update database
