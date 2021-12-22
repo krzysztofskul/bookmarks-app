@@ -23,8 +23,10 @@
 
 // todo-done (committed):
 
-# 0.1.5
+# 0.1.5-FINAL
     + Amazon AWS configuration
+    + readme.md updated
+    + pom.xml updated
 
 # 0.1.4-1
     + update database

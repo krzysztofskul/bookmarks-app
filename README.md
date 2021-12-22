@@ -14,9 +14,3 @@ http://bookmarksapp-env.eba-g3wypn57.eu-central-1.elasticbeanstalk.com/login.htm
 [comment]: <> (<img src=src/main/resources/static/pics/screenshot--home-page--2021-08-04-111121.png alt="screenshot--home-page--2021-08-04-111121.png" width=400/>)
 
 ![](src/main/resources/static/pics/screenshot--home-page--2021-08-04-111121.png)
-
-
-### DEMO
-
-[https://krzysztofskul--bookmarks-app.herokuapp.com/](https://krzysztofskul--bookmarks-app.herokuapp.com/)
-

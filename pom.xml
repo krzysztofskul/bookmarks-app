@@ -12,7 +12,7 @@
 
     <groupId>pl.krzysztofskul</groupId>
     <artifactId>bookmarks-app</artifactId>
-    <version>0.1-FINAL</version>
+    <version>0.1.5-FINAL</version>
     <packaging>war</packaging>
     <name>bookmarks-app</name>
     <description>Demo app for WWW bookmarks managing</description>
