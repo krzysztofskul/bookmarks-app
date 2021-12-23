@@ -28,15 +28,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable()
             .authorizeRequests()
+            .antMatchers("/js/*", "/css/*", "/header.html", "/footer.html", "/pics/**").permitAll()
             .antMatchers("/**").hasAnyRole("ADMIN", "USER")
-            .anyRequest().authenticated()
+            .anyRequest()
+            .authenticated()
             .and()
                 .formLogin().loginPage("/login.html").permitAll().loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/index.html", true)
                 .failureUrl("/login.html").permitAll()
             .and()
-            .logout().permitAll().logoutRequestMatcher(new AntPathRequestMatcher("/logout")
-        );
+                .logout()
+                .permitAll()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+        ;
     }
 
 

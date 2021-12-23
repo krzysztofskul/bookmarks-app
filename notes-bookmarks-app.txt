@@ -1,11 +1,7 @@
 // todo (to commit):
 
-# 0.1.6
-    - login as a guest functionality using JS
-
 #
     - sign up functionality
-    - login as a guest button on login page
     - front-end updates
         - bookmark delete
         - bookmark edit functionality ...
@@ -22,6 +18,10 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.2.0-snapshot
+    + login form created
+    + login as a guest functionality added
 
 # 0.1.5-FINAL
     + Amazon AWS configuration
