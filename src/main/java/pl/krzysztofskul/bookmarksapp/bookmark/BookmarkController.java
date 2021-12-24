@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 @Controller
 @RequestMapping("/bookmarks-app")
@@ -22,9 +25,12 @@ public class BookmarkController {
     @GetMapping("/bookmark-details/{bookmarkId}")
     public String getBookmarkDetails(
             @PathVariable(name = "bookmarkId") Long bookmarkId,
-            Model model
+            Model model,
+            HttpServletRequest httpServletRequest,
+            HttpServletResponse httpServletResponse
     ) {
         model.addAttribute("bookmark", bookmarkService.loadById(bookmarkId));
+        httpServletRequest.setAttribute("bookmarkId", bookmarkId);
         return "bookmark-details";
     }
 }

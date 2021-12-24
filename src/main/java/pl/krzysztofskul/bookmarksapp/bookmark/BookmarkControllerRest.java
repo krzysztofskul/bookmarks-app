@@ -20,6 +20,13 @@ public class BookmarkControllerRest {
         this.folderService = folderService;
     }
 
+    @GetMapping("/bookmark/{id}")
+    public Bookmark getBookmark(
+            @PathVariable(name = "id") Long id
+    ) {
+        return bookmarkService.loadById(id);
+    }
+
     @PostMapping
     @RequestMapping("/bookmark/quick-add-to-folder/{folderId}")
     public Bookmark addBookmarkToFolder(

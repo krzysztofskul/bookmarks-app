@@ -25,6 +25,7 @@
 
     <div id="content">
         <div id="test">
+            <div id="bookmarkId">${bookmarkId}</div>
             <h1>@test: bookmark details page</h1>
             <p>@test: bookmark id from model: ${bookmark.id}</p>
             <p>@test: bookmark url from model: ${bookmark.url}</p>

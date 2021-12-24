@@ -4,7 +4,7 @@
     - sign up functionality
     - front-end updates
         - bookmark delete
-        - bookmark edit functionality ...
+        - bookmark edit functionality ... js get bookmark.id from model ...
             - bookmark-details.js- welcome text in header
         - my account button to activate
         - own login page
@@ -18,6 +18,9 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.2.0-snapshot
+    + bookmark edit page updated
 
 # 0.2.0-snapshot
     + login form created
