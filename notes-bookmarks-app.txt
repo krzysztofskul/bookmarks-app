@@ -1,14 +1,12 @@
 // todo (to commit):
 
 #
+
+    - user logged in info ...
+
     - sign up functionality
-    - front-end updates
-        - bookmark delete
-        - bookmark edit functionality ... js get bookmark.id from model ...
-            - bookmark-details.js- welcome text in header
-        - my account button to activate
-        - own login page
-            - login as an user-guest button
+
+    - bookmark icon import
 
     - folders managing
 
@@ -18,6 +16,10 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.2.0-snapshot
+    + bookmark edit page updated
+    + Folder/Bookmark relationship updated (@JsonIdentityInfo)
 
 # 0.2.0-snapshot
     + bookmark edit page updated

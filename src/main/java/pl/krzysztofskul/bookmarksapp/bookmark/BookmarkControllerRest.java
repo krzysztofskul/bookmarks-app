@@ -24,6 +24,7 @@ public class BookmarkControllerRest {
     public Bookmark getBookmark(
             @PathVariable(name = "id") Long id
     ) {
+        Bookmark bookmark = bookmarkService.loadById(id);
         return bookmarkService.loadById(id);
     }
 

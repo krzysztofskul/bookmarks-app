@@ -21,6 +21,9 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Folder implements Serializable {
 
     @Id
@@ -44,7 +47,7 @@ public class Folder implements Serializable {
     private String path;
 
     @OneToMany(mappedBy = "folder", cascade = CascadeType.PERSIST)
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Bookmark> bookmarkList = new ArrayList<>();
 
     public Folder(String name) {

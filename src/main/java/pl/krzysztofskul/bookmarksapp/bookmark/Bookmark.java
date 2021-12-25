@@ -1,6 +1,7 @@
 package pl.krzysztofskul.bookmarksapp.bookmark;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,9 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Bookmark implements Serializable {
 
     @Id
@@ -32,7 +36,7 @@ public class Bookmark implements Serializable {
      * parent folder
      */
     @ManyToOne
-    @JsonBackReference
+//    @JsonBackReference
     private Folder folder;
 
     // todo
