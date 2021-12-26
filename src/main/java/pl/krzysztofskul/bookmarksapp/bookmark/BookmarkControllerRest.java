@@ -1,6 +1,8 @@
 package pl.krzysztofskul.bookmarksapp.bookmark;
 
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.bookmarksapp.folder.FolderService;
 
@@ -24,7 +26,6 @@ public class BookmarkControllerRest {
     public Bookmark getBookmark(
             @PathVariable(name = "id") Long id
     ) {
-        Bookmark bookmark = bookmarkService.loadById(id);
         return bookmarkService.loadById(id);
     }
 
@@ -38,6 +39,22 @@ public class BookmarkControllerRest {
         Bookmark newBookmarkToSave = new Bookmark(bookmarkUrl);
         newBookmarkToSave.setFolder(folderService.loadById(folderId));
         return bookmarkService.save(newBookmarkToSave);
+    }
+
+    @PutMapping(value = "/bookmarks/{id}")
+    public Bookmark putBookmark(
+//            @RequestBody Bookmark bookmark
+            @PathVariable Long id,
+            @RequestParam String name,
+            @RequestParam String url,
+            @RequestParam String description
+
+    ) {
+        Bookmark bookmark = bookmarkService.loadById(id);
+        bookmark.setName(name);
+        bookmark.setUrl(url);
+        bookmark.setDescription(description);
+        return bookmarkService.save(bookmark);
     }
 
     @DeleteMapping("/bookmark/{bookmarkId}")

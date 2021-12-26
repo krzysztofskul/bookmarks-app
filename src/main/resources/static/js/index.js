@@ -4,4 +4,22 @@ $(document).ready(function () {
     $("header").load("/header.html");
     $("footer").load("/footer.html");
 
+    getUserLoggedIn();
+
+    function getUserLoggedIn() {
+        $.ajax({
+            url: "/bookmarks-app/user-logged-in",
+            data: {},
+            type: "GET",
+            dataType: "text"
+        }).done(function(username) {
+            console.log("User logged in: "+username);
+            //$("#btnLogOut").removeClass("disabled");
+            $("#btnMyAccount").removeClass("disabled");
+            $("#btnLogOut").removeClass("disabled");
+        }).fail(function () {
+            console.log("Not recognized who is logged in!");
+        });
+    }
+
 });

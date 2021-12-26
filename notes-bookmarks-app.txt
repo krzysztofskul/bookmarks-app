@@ -1,7 +1,7 @@
 // todo (to commit):
 
 #
-
+    - my account page  ...
     - user logged in info ...
 
     - sign up functionality
@@ -12,10 +12,14 @@
 
     - bookmark managing functionality
         - full bookmark add button
-        - edit bookmark page
+        - edit bookmark page ...
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.2.0-snapshot
+    + front-end header/menu updates
+    + edit bookmark's description using ajax/put
 
 # 0.2.0-snapshot
     + bookmark edit page updated

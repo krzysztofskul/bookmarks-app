@@ -1,7 +1,7 @@
 $(document).ready(function () {
     //alert("test bookmark-details.js/jquery for bookmark-details.jsp!"); // ok
 
-    $("#test").fadeOut(1000);
+    $("#test").fadeOut(100);
 
     let bookmarkId = $("#bookmarkId").text();
     let divContent = $("#content");
@@ -39,25 +39,61 @@ $(document).ready(function () {
                     "</div> " +
                     "<div class='row m-1'>" +
                         "<div class='col-3 text-right'>bookmark name:</div>" +
-                        "<div class='col-8'>"+loadedBookmark.name+"</div>" +
-                        "<div class='col-1'><button class='btn btn-sm btn-primary'>EDIT</button></div>" +
+                        "<div id='bookmarkName' class='col-8'>"+loadedBookmark.name+"</div>" +
+                        "<div class='col-1'><button id='btnEditBookmarkName' class='btn btn-sm btn-edit btn-primary disabled'>EDIT</button></div>" +
                     "</div> " +
                     "<div class='row m-1'>" +
                         "<div class='col-3 text-right'>bookmark url:</div>" +
                         "<div class='col-8'>"+loadedBookmark.url+"</div>" +
-                        "<div class='col-1'><button class='btn btn-sm btn-primary'>EDIT</button></div>" +
-
+                        "<div class='col-1'><button class='btn btn-sm btn-edit btn-primary disabled'>EDIT</button></div>" +
             "</div> " +
                     "<div class='row m-1'>" +
                         "<div class='col-3 text-right'>bookmark description:</div>" +
                         "<div class='col-8'>"+loadedBookmark.description+"</div>" +
-                        "<div class='col-1'><button class='btn btn-sm btn-primary'>EDIT</button></div>" +
+                        "<div class='col-1'><button class='btn btn-sm btn-edit btn-primary'>EDIT</button></div>" +
             "</div> " +
                 "</div>" +
                 "<div class='card-footer'>" +
-                "" +
+                    "<button class='btn-sm btn-outline-success float-right disabled'>SAVE</button>" +
                 "</div> " +
-            "</div>");
+            "</div>"
+        );
+
+        $('button.btn-edit').on("click", function() {
+            /* tests */
+            //console.log("test! Edit button clicked!"); // ok
+            //$(this).parent().prev().css("background-color", "red"); // ok
+
+            let divToEdit = $(this).parent().prev();
+
+            let divToEditClassList = divToEdit;
+            divToEdit.replaceWith("<input id='input' class='col-8' placeholder='"+divToEdit.text()+"'>");
+            divToEdit.addClass(divToEditClassList);
+
+            let btnSave = $('button.btn-outline-success');
+            btnSave.removeClass("disabled", "btn-outline-success");
+            btnSave.addClass("btn-success");
+            btnSave.on("click", function (){
+                loadedBookmark.description = $("#input").val();
+                putEditedBookmark()
+            });
+        });
+
+    }
+
+    function putEditedBookmark() {
+        //alert("test! btn save works!"); //ok
+        $.ajax({
+            url: "/bookmarks-app/bookmarks/" + loadedBookmark.id,
+            method: "PUT",
+            dataType: "json",
+            data: loadedBookmark
+        }).done(function (){
+            alert("success! bookmark updated!");
+            location.reload();
+        }).fail(function () {
+            alert("failed! bookmark not updated!");
+        })
     }
 
 });
