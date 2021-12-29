@@ -71,7 +71,7 @@ $(document).ready(function () {
             "<div class='card-header'>" +
             "<div class='bookmark-name'>"+bookmark.name+"</div>" +
             "<div class='bookmark-buttons'>" +
-            "<a href='#' class='d-inline-block pl-1' id='delete-bookmark-btn"+bookmark.id+"'>DEL</a>" +
+            "<a href='#' class='d-inline-block pl-1 text-danger' id='delete-bookmark-btn"+bookmark.id+"'>DEL</a>" +
             "<a href='/bookmarks-app/bookmark-details/"+bookmark.id+"' class='d-inline-block text-primary pl-1'>EDIT</a>" +
             "<a href='#' class='d-inline-block text-success pl-1'>OPEN</a>" +
             "</div> " +
@@ -392,7 +392,7 @@ $(document).ready(function () {
     function deleteBookmark(id, backToFolderId) {
         //alert("Test delete bookmark button!");
         $.ajax({
-           url: "/bookmarks-app/bookmark/"+id,
+           url: "/bookmarks-app/bookmarks/"+id,
            type: 'DELETE'
         }).done(function (){
             alert("Bookmark deleted!");

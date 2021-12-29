@@ -1,6 +1,10 @@
 // todo (to commit):
 
 #
+
+    - navigation bar for edit bookmark page
+    - back to folder after deleted bookmark
+
     - my account page  ...
     - user logged in info ...
 
@@ -16,6 +20,9 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.2.0-snapshot
+    + delete bookmark functionality
 
 # 0.2.0-snapshot
     + front-end header/menu updates

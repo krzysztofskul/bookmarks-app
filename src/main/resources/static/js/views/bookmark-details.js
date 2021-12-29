@@ -30,7 +30,13 @@ $(document).ready(function () {
         divContent.append("" +
             "<div class='card w-75 ml-auto mr-auto'>" +
                 "<div class='card-header'>" +
-                    "bookmark id: " + loadedBookmark.id +
+                    "<div class='row m-1'>" +
+                        "<div class='col-3 text-right'>bookmark id:</div>" +
+                        "<div class='col-8'>"+ loadedBookmark.id +"</div>" +
+                        "<div class='col-1'>" +
+                            "<button id='btnDelBookmark' class='btn btn-sm btn-del btn-danger'>DEL</button>" +
+                        "</div>" +
+                    "</div>" +
                 "</div>" +
                 "<div class='card-body'>" +
                     "<div class='row m-1'>" +
@@ -73,11 +79,24 @@ $(document).ready(function () {
             let btnSave = $('button.btn-outline-success');
             btnSave.removeClass("disabled", "btn-outline-success");
             btnSave.addClass("btn-success");
-            btnSave.on("click", function (){
+            btnSave.on("click", function() {
                 loadedBookmark.description = $("#input").val();
                 putEditedBookmark()
             });
         });
+
+        $("#btnDelBookmark").on("click", function() {
+            $.ajax({
+                url: "/bookmarks-app/bookmarks/" + loadedBookmark.id,
+                method: "DELETE"
+            }).done(function () {
+                alert("success! bookmark deleted!");
+                location.replace("/");
+            }).fail(function () {
+                alert("failed! bookmark not deleted!");
+            }).always(function () {});
+
+        })
 
     }
 
