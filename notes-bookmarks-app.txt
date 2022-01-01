@@ -1,5 +1,13 @@
 // todo (to commit):
 
+# 0.3.0
+New idea for application pages navigation.
+Folder: MVC + RestController
+FolderController redirecting each folder to its own page address using MVC
+
+# 0.3.0--SNAPSHOT
+    - home page
+
 #
 
     - navigation bar for edit bookmark page
@@ -20,6 +28,11 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.3.0-SNAPSHOT-1
+    + FolderController.class created
+    + folder-details.jsp created
+    + pom.xml updated
 
 # 0.2.0-snapshot
     + delete bookmark functionality
