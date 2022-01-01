@@ -29,6 +29,11 @@ FolderController redirecting each folder to its own page address using MVC
 
 // todo-done (committed):
 
+# 0.3.0-SNAPSHOT-2
+    + home.jsp, home.js created
+    ++ list of 1st level folders with button to goto specific folder with given id
+    + HomeController.class created
+
 # 0.3.0-SNAPSHOT-1
     + FolderController.class created
     + folder-details.jsp created
