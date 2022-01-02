@@ -15,13 +15,55 @@ $(document).ready(function() {
         ajaxGet(url)
     }
 
-    let doWhenSuccess = function (dataGet) {
+    function getFolder(folderId) {
+        ajaxGet("/bookmarks-app/folder/"+folderId);
+    }
+
+    function setFolderPath(folder) {
+        let divToRefresh = $("#folder-path");
+
+        if (folder.parent == null) {
+            divToRefresh.empty();
+        }
+
+        divToRefresh.append("" +
+            "<div class='d-inline-block'>" +
+                "<div class='d-inline-block pl-2 pr-2'>/</div>" +
+                "<button class='d-inline-block btn btn-outline-dark btnPathGoTo' id='folderId-"+folder.id+"'>"+folder.name+"</button>" +
+            "</div>"
+        );
+
+        $("#folder-path-home").on("click", function () {
+            location.replace("/home");
+        });
+
+        // $(".btnPathGoTo").on("click", function () { // todo 2022-01-02: go to specific folder from the path
+        //     let folderId = $(this).attr("id").slice(9);
+        //     getFolder(folderId);
+        // });
+
+        // $("#folder-path-back").on("click", function () { // todo 2022-01-02: go to previous folder
+        //     // let folderId = $(this).next().children().last().attr("id").slice(9);
+        //     let folderId = $(this).next().children().last().children().last().prev().attr("id").slice(9);
+        //     alert("folder id to back: "+folderId);
+        // });
+
+    }
+
+    let doWhenSuccessGettingFolders = function (dataGet) {
         //alert("Success! 1st level folders downloaded.\nDownloaded "+dataGet.length+" folders.");
-        showFolders(dataGet);
+        if (dataGet.length > 1) { // if dataGet is array of folders
+            showFolders(dataGet);
+        } else { // if dataGet is a specific folder
+            //alert("folder to show: "+dataGet.name);
+            showFolders(dataGet.children);
+            setFolderPath(dataGet);
+        }
     }
 
     function showFolders(folders) {
-        let divToShowFolders = $("#home");
+        let divToShowFolders = $("#content-main div");
+        divToShowFolders.html("");
 
         folders.forEach(function(element) {
            divToShowFolders.append(
@@ -35,9 +77,9 @@ $(document).ready(function() {
         });
 
         $(".btnGoTo").on("click", function () {
-            alert("test btnShowFolder!\nFolder od to go to: "+$(this).parent().parent().attr("id").slice(9));
+            let folderId = $(this).parent().parent().attr("id").slice(9);
+            getFolder(folderId);
         });
-
 
     }
 
@@ -47,7 +89,7 @@ $(document).ready(function() {
             method: "GET",
             dataType: "JSON"
         }).done(function (dataGet) {
-            doWhenSuccess(dataGet);
+            doWhenSuccessGettingFolders(dataGet);
         }).fail(function () {
             alert("error while get 1st level folders!");
         })

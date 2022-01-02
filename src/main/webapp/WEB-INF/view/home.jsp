@@ -28,20 +28,28 @@
 
     <header></header>
 
-    <div id="content" class="ml-auto mr-auto w-75">
+    <div id="container-main" class="ml-auto mr-auto w-75">
         <div id="test">
             <h1 class="test">test home page</h1>
         </div>
 
-        <div class="row">
-            <div id="folders-tree" class="col-4 text-center">
+        <div class="row p-2 border-top border-bottom">
+            <div class="col-12">
+                <div id="folder-path-home" class="d-inline-block btn btn-outline-dark">home</div>
+                <div id="folder-path-back" class="d-inline-block btn btn-outline-dark">back</div>
+                <div id="folder-path" class="d-inline-block"></div>
+            </div>
+        </div>
+
+        <div class="row pt-2">
+            <div id="menu-folders-tree" class="col-4 text-center">
                 <h1 class="test">test</h1>
                 <h4>FOLDERS TREE</h4>
             </div>
 
-            <div id="home" class="col-8 text-center">
+            <div id="content-main" class="col-8 text-center">
                 <h1 class="test">test</h1>
-                <h4>HOME</h4>
+                <h4>...</h4>
                 <div></div>
             </div>
         </div>
