@@ -2,25 +2,24 @@ package pl.krzysztofskul.bookmarksapp.folder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller
-@RequestMapping("/folders")
 public class FolderController {
 
-    @Autowired
     private FolderService folderService;
 
-    @GetMapping("/{id}")
+    @Autowired
+    public FolderController(FolderService folderService) {
+        this.folderService = folderService;
+    }
+
+    @GetMapping("/folders/{id}")
     public String getFolderById(
-            @PathVariable Long id,
-            Model model
     ) {
-        model.addAttribute("folder", folderService.loadById(id));
-        return "folder/folder-details";
+        return "home";
     }
 
 }

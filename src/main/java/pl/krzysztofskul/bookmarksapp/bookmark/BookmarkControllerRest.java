@@ -1,8 +1,6 @@
 package pl.krzysztofskul.bookmarksapp.bookmark;
 
-import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.bookmarksapp.folder.FolderService;
 

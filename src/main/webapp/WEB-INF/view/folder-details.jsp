@@ -26,35 +26,38 @@
 </head>
 <body>
 
-    <header></header>
+<header></header>
 
-    <div id="container-main" class="ml-auto mr-auto w-75">
-        <div id="test">
-            <h1 class="test">test home page</h1>
-        </div>
-
-        <div class="row">
-            <div id="content-folders-tree" class="col-4 text-center">
-                <div class="test">
-                    <h1>folder-details.jsp test!</h1>
-                    <h2>folder: ${folder}</h2>
-                    <h2>folder id: ${folder.id}</h2>
-                    <h2>folder name: ${folder.name}</h2>
-                </div>
-                <h4>FOLDERS TREE</h4>
-            </div>
-
-            <div id="content-main" class="col-8 text-center">
-                <h1 class="test">test</h1>
-                <h4>HOME</h4>
-                <div></div>
-            </div>
-        </div>
-
-
+<div id="container-main" class="ml-auto mr-auto w-75">
+    <div id="test">
+        <h1 class="test">test home page</h1>
     </div>
 
-    <footer></footer>
+    <div class="row p-2 border-top border-bottom">
+        <div class="col-12">
+            <div id="folder-path-home" class="d-inline-block btn btn-outline-dark">home</div>
+            <div id="folder-path-back" class="d-inline-block btn btn-outline-dark">back</div>
+            <div id="folder-path" class="d-inline-block"></div>
+        </div>
+    </div>
+
+    <div class="row pt-2">
+        <div id="menu-folders-tree" class="col-4 text-center">
+            <h1 class="test">test</h1>
+            <h4>FOLDERS TREE</h4>
+        </div>
+
+        <div id="content-main" class="col-8 text-center">
+            <h1 class="test">test</h1>
+            <h4>...</h4>
+            <div></div>
+        </div>
+    </div>
+
+
+</div>
+
+<footer></footer>
 
 </body>
 </html>

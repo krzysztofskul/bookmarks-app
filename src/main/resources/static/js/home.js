@@ -21,26 +21,45 @@ $(document).ready(function() {
 
     function setFolderPath(folder) {
         let divToRefresh = $("#folder-path");
+        divToRefresh.empty();
 
-        if (folder.parent == null) {
-            divToRefresh.empty();
+        let folderId = folder.id
+        buildFolderPath(folderId);
+
+        function buildFolderPath(folderId) {
+            $.ajax({
+                url: "/bookmarks-app/folder/"+folderId,
+                method: "GET",
+                dataType: "JSON",
+                async: false
+            }).done(function (folderGet) {
+
+                divToRefresh.prepend("" +
+                    "<div class='d-inline-block'>" +
+                    "<div class='d-inline-block pl-2 pr-2'>/</div>" +
+                    "<button class='d-inline-block btn btn-outline-dark btnPathGoTo' id='folderId-"+folderGet.id+"'>"+folderGet.id+" | "+folderGet.name+"</button>" +
+                    "</div>"
+                );
+
+                $("#folder-path-home").on("click", function () {
+                    location.replace("/home");
+                    //location.href = "/home";
+                });
+
+                if (folderGet.parent != null) {
+                    console.log("and getting parent with id: "+folderGet.parent);
+                    buildFolderPath(folderGet.parent);
+
+                }
+            }).fail(function () {
+                alert("error while get folder to build folder path!");
+            });
         }
 
-        divToRefresh.append("" +
-            "<div class='d-inline-block'>" +
-                "<div class='d-inline-block pl-2 pr-2'>/</div>" +
-                "<button class='d-inline-block btn btn-outline-dark btnPathGoTo' id='folderId-"+folder.id+"'>"+folder.name+"</button>" +
-            "</div>"
-        );
-
-        $("#folder-path-home").on("click", function () {
-            location.replace("/home");
+        $(".btnPathGoTo").on("click", function () { // todo 2022-01-02: go to specific folder from the path
+            let folderId = $(this).attr("id").slice(9);
+            getFolder(folderId);
         });
-
-        // $(".btnPathGoTo").on("click", function () { // todo 2022-01-02: go to specific folder from the path
-        //     let folderId = $(this).attr("id").slice(9);
-        //     getFolder(folderId);
-        // });
 
         // $("#folder-path-back").on("click", function () { // todo 2022-01-02: go to previous folder
         //     // let folderId = $(this).next().children().last().attr("id").slice(9);
@@ -92,8 +111,7 @@ $(document).ready(function() {
             doWhenSuccessGettingFolders(dataGet);
         }).fail(function () {
             alert("error while get 1st level folders!");
-        })
-
+        });
     }
 
     function removeTestDivs() {
