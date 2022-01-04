@@ -7,6 +7,7 @@ FolderController redirecting each folder to its own page address using MVC
 
 # 0.3.0--SNAPSHOT
     - todo 2022-01-02 (to the previous folder)
+
 #
 
     - navigation bar for edit bookmark page
@@ -27,6 +28,9 @@ FolderController redirecting each folder to its own page address using MVC
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.3.0--SNAPSHOT-5
+    + folder navigation functionality with redirection address in url of each folder to /folders?folderId
 
 # 0.3.0--SNAPSHOT-4
     + front-end updates

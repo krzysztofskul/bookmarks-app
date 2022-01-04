@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: z0041nhm
@@ -21,8 +22,8 @@
     <!--jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <!--JS files-->
-    <script src="js/index.js" type="text/javascript"></script>
-    <script src="js/home.js" type="text/javascript"></script>
+    <script src="/js/index.js" type="text/javascript"></script>
+    <script src="/js/home.js" type="text/javascript"></script>
 </head>
 <body>
 

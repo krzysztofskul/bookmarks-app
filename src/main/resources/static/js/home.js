@@ -5,10 +5,29 @@ $(document).ready(function() {
     init();
 
     function init() {
+
+        testFunction();
+
         $("header").load("/header.html");
         $("footer").load("/footer.html");
         removeTestDivs();
-        getFolders1stLevel("/bookmarks-app/folders/1st-level");
+        if (getActualFolderIdFromUrlParam() != null || getActualFolderIdFromUrlParam() !== undefined) {
+            getFolder(getActualFolderIdFromUrlParam());
+        } else {
+            getFolders1stLevel("/bookmarks-app/folders/1st-level");
+        }
+
+    }
+
+    function testFunction() {
+        console.log(getActualFolderIdFromUrlParam());
+    }
+
+    function getActualFolderIdFromUrlParam() {
+        let urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has("folderId")) {
+            return urlParams.get("folderId");
+        }
     }
 
     function getFolders1stLevel(url) {
@@ -47,7 +66,7 @@ $(document).ready(function() {
                 });
 
                 if (folderGet.parent != null) {
-                    console.log("and getting parent with id: "+folderGet.parent);
+                    //console.log("and getting parent with id: "+folderGet.parent);
                     buildFolderPath(folderGet.parent);
 
                 }
@@ -58,7 +77,8 @@ $(document).ready(function() {
 
         $(".btnPathGoTo").on("click", function () { // todo 2022-01-02: go to specific folder from the path
             let folderId = $(this).attr("id").slice(9);
-            getFolder(folderId);
+            location.replace("/folders?folderId="+folderId);
+            //getFolder(folderId);
         });
 
         // $("#folder-path-back").on("click", function () { // todo 2022-01-02: go to previous folder
@@ -97,7 +117,9 @@ $(document).ready(function() {
 
         $(".btnGoTo").on("click", function () {
             let folderId = $(this).parent().parent().attr("id").slice(9);
-            getFolder(folderId);
+            // alert("/folders/"+folderId);
+            location.replace("/folders?folderId="+folderId);
+            //getFolder(folderId);
         });
 
     }
