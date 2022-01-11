@@ -30,9 +30,6 @@
     <header></header>
 
     <div id="container-main" class="ml-auto mr-auto w-75">
-<%--        <div id="test">--%>
-<%--            <h1 class="test">test home page</h1>--%>
-<%--        </div>--%>
 
         <div class="row p-2 border-top border-bottom">
             <div class="col-12">
@@ -44,12 +41,10 @@
 
         <div class="row pt-2">
             <div id="menu-folders-tree" class="col-4 text-center">
-                <%--<h1 class="test">test</h1>--%>
                 <h4>FOLDERS TREE</h4>
             </div>
 
             <div id="content-main" class="col-8 text-center">
-                <%--<h1 class="test">test</h1>--%>
                 <h4>...</h4>
                 <div></div>
             </div>

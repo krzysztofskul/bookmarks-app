@@ -1,12 +1,7 @@
 // todo (to commit):
 
-# 0.3.0
-New idea for application pages navigation.
-Folder: MVC + RestController
-FolderController redirecting each folder to its own page address using MVC
-
-# 0.3.0--SNAPSHOT
-    - todo 2022-01-02 (to the previous folder)
+# 0.3.1
+    - ajaxGet() method update in home.js
 
 #
 
@@ -28,6 +23,18 @@ FolderController redirecting each folder to its own page address using MVC
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.3.0-FINAL
+    New idea for application pages navigation. FolderController redirecting each folder to its
+    own page address using MVC. Folder address: MVC / Folder content: RestController
+
+    + code cleaning
+    + pom.xml update
+    + readme.md update
+    + pull to master
+
+# 0.3.0--SNAPSHOT-6
+    + folder navigation functionality with back to the previous folder
 
 # 0.3.0--SNAPSHOT-5
     + folder navigation functionality with redirection address in url of each folder to /folders?folderId

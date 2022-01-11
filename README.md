@@ -7,7 +7,7 @@ Created to test and develop skills in ***Java, REST API, SpringBoot, Hibernate, 
 
 ### DEMO PAGE ON AMAZON AWS TRIAL
 
-http://bookmarksapp-env.eba-g3wypn57.eu-central-1.elasticbeanstalk.com/login.html
+... (in progress)
 
 ### SCREENSHOTS
 

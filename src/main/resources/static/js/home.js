@@ -14,7 +14,7 @@ $(document).ready(function() {
         if (getActualFolderIdFromUrlParam() != null || getActualFolderIdFromUrlParam() !== undefined) {
             getFolder(getActualFolderIdFromUrlParam());
         } else {
-            getFolders1stLevel("/bookmarks-app/folders/1st-level");
+            getFolders1stLevel();
         }
 
     }
@@ -30,12 +30,32 @@ $(document).ready(function() {
         }
     }
 
-    function getFolders1stLevel(url) {
-        ajaxGet(url)
+    function getFolders1stLevel() {
+        ajaxGet("/bookmarks-app/folders/1st-level", true, "Error while getting 1st level folders!")
     }
 
     function getFolder(folderId) {
-        ajaxGet("/bookmarks-app/folder/"+folderId);
+        ajaxGet("/bookmarks-app/folder/"+folderId, true, "Error while getting the folder!");
+    }
+
+    function setButtonFunctionality(button) {
+        switch (button) {
+            case ".btnPathGoTo": {
+                $(button).on("click", function () {
+                    let folderId = $(this).attr("id").slice(9);
+                    location.replace("/folders?folderId=" + folderId);
+                });
+                break;
+            }
+            case ".btnGoTo": {
+                $(button).on("click", function () {
+                    let folderId = $(this).parent().parent().attr("id").slice(9);
+                    location.replace("/folders?folderId="+folderId);
+                });
+                break;
+            }
+        }
+
     }
 
     function setFolderPath(folder) {
@@ -65,36 +85,32 @@ $(document).ready(function() {
                     //location.href = "/home";
                 });
 
-                if (folderGet.parent != null) {
-                    //console.log("and getting parent with id: "+folderGet.parent);
-                    buildFolderPath(folderGet.parent);
+                $("#folder-path-back").on("click", function () {
+                    let folderId;
+                    if ($(this).next().children().length > 1) {
+                        folderId = $(this).next().children().last().prev().children().last().attr("id").slice(9);
+                        location.replace("/folders?folderId="+folderId);
+                    } else {
+                        location.replace("/home");
+                    }
+                });
 
+                if (folderGet.parent != null) {
+                    buildFolderPath(folderGet.parent);
                 }
             }).fail(function () {
                 alert("error while get folder to build folder path!");
             });
         }
 
-        $(".btnPathGoTo").on("click", function () { // todo 2022-01-02: go to specific folder from the path
-            let folderId = $(this).attr("id").slice(9);
-            location.replace("/folders?folderId="+folderId);
-            //getFolder(folderId);
-        });
-
-        // $("#folder-path-back").on("click", function () { // todo 2022-01-02: go to previous folder
-        //     // let folderId = $(this).next().children().last().attr("id").slice(9);
-        //     let folderId = $(this).next().children().last().children().last().prev().attr("id").slice(9);
-        //     alert("folder id to back: "+folderId);
-        // });
+        setButtonFunctionality(".btnPathGoTo");
 
     }
 
     let doWhenSuccessGettingFolders = function (dataGet) {
-        //alert("Success! 1st level folders downloaded.\nDownloaded "+dataGet.length+" folders.");
         if (dataGet.length > 1) { // if dataGet is array of folders
             showFolders(dataGet);
         } else { // if dataGet is a specific folder
-            //alert("folder to show: "+dataGet.name);
             showFolders(dataGet.children);
             setFolderPath(dataGet);
         }
@@ -115,24 +131,20 @@ $(document).ready(function() {
            );
         });
 
-        $(".btnGoTo").on("click", function () {
-            let folderId = $(this).parent().parent().attr("id").slice(9);
-            // alert("/folders/"+folderId);
-            location.replace("/folders?folderId="+folderId);
-            //getFolder(folderId);
-        });
+        setButtonFunctionality(".btnGoTo");
 
     }
 
-    function ajaxGet(url) {
+    function ajaxGet(url, asyncMethod, error) {
         $.ajax({
             url: url,
             method: "GET",
-            dataType: "JSON"
+            dataType: "JSON",
+            async: asyncMethod
         }).done(function (dataGet) {
             doWhenSuccessGettingFolders(dataGet);
         }).fail(function () {
-            alert("error while get 1st level folders!");
+            alert(error);
         });
     }
 

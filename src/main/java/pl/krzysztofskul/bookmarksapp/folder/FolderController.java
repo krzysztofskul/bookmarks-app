@@ -19,14 +19,14 @@ public class FolderController {
         this.folderService = folderService;
     }
 
-    @GetMapping("/{folderId}")
+    @GetMapping("/{folderId}") // redirection for address with param. /folders?folderId=
     public String getFolderById(
             @PathVariable Long folderId
     ) {
         return "home";
     }
 
-    @GetMapping() // redirection for address with param. /folders?folderId=
+    @GetMapping()
     public String getFolderById(
     ) {
         return "home";
