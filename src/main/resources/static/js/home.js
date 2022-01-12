@@ -2,7 +2,14 @@ $(document).ready(function() {
 
     //alert("test home.js!"); //ok
 
-    init();
+    let doWhenSuccessGettingFolders = function (dataGet) {
+        if (dataGet.length > 1) { // if dataGet is array of folders
+            showFolders(dataGet);
+        } else { // if dataGet is a specific folder
+            showFolders(dataGet.children);
+            setFolderPath(dataGet);
+        }
+    }
 
     function init() {
 
@@ -31,11 +38,11 @@ $(document).ready(function() {
     }
 
     function getFolders1stLevel() {
-        ajaxGet("/bookmarks-app/folders/1st-level", true, "Error while getting 1st level folders!")
+        ajaxGet("/bookmarks-app/folders/1st-level", true, doWhenSuccessGettingFolders, "Error while getting 1st level folders!");
     }
 
     function getFolder(folderId) {
-        ajaxGet("/bookmarks-app/folder/"+folderId, true, "Error while getting the folder!");
+        ajaxGet("/bookmarks-app/folder/"+folderId, true, doWhenSuccessGettingFolders, "Error while getting the folder!");
     }
 
     function setButtonFunctionality(button) {
@@ -60,60 +67,44 @@ $(document).ready(function() {
 
     function setFolderPath(folder) {
         let divToRefresh = $("#folder-path");
-        divToRefresh.empty();
-
         let folderId = folder.id
-        buildFolderPath(folderId);
+        let doWhenSuccessWhenGettingFolderToBuildPath = function (folderGet) {
+            //alert("let doWhenSuccessWhenGettingFolderToBuildPath = function (folderGet)");
+            //divToRefresh.prepend("" +
+            $("#folder-path").prepend("" +
+                "<div class='d-inline-block'>" +
+                "<div class='d-inline-block pl-2 pr-2'>/</div>" +
+                "<button class='d-inline-block btn btn-outline-dark btnPathGoTo' id='folderId-"+folderGet.id+"'>"+folderGet.id+" | "+folderGet.name+"</button>" +
+                "</div>"
+            );
 
-        function buildFolderPath(folderId) {
-            $.ajax({
-                url: "/bookmarks-app/folder/"+folderId,
-                method: "GET",
-                dataType: "JSON",
-                async: false
-            }).done(function (folderGet) {
-
-                divToRefresh.prepend("" +
-                    "<div class='d-inline-block'>" +
-                    "<div class='d-inline-block pl-2 pr-2'>/</div>" +
-                    "<button class='d-inline-block btn btn-outline-dark btnPathGoTo' id='folderId-"+folderGet.id+"'>"+folderGet.id+" | "+folderGet.name+"</button>" +
-                    "</div>"
-                );
-
-                $("#folder-path-home").on("click", function () {
-                    location.replace("/home");
-                    //location.href = "/home";
-                });
-
-                $("#folder-path-back").on("click", function () {
-                    let folderId;
-                    if ($(this).next().children().length > 1) {
-                        folderId = $(this).next().children().last().prev().children().last().attr("id").slice(9);
-                        location.replace("/folders?folderId="+folderId);
-                    } else {
-                        location.replace("/home");
-                    }
-                });
-
-                if (folderGet.parent != null) {
-                    buildFolderPath(folderGet.parent);
-                }
-            }).fail(function () {
-                alert("error while get folder to build folder path!");
+            $("#folder-path-home").on("click", function () {
+                location.replace("/home");
+                //location.href = "/home";
             });
+
+            $("#folder-path-back").on("click", function () {
+                let folderId;
+                if ($(this).next().children().length > 1) {
+                    folderId = $(this).next().children().last().prev().children().last().attr("id").slice(9);
+                    location.replace("/folders?folderId="+folderId);
+                } else {
+                    location.replace("/home");
+                }
+            });
+
+            if (folderGet.parent != null) {
+                //buildFolderPath(folderGet.parent);
+                ajaxGet("/bookmarks-app/folder/"+folderGet.parent, false, doWhenSuccessWhenGettingFolderToBuildPath, "Error while get folder to build folder path!");
+            }
+        }
+        function buildFolderPath() {
+            ajaxGet("/bookmarks-app/folder/"+folderId, false, doWhenSuccessWhenGettingFolderToBuildPath, "Error while get folder to build folder path!");
         }
 
+        divToRefresh.empty();
+        buildFolderPath();
         setButtonFunctionality(".btnPathGoTo");
-
-    }
-
-    let doWhenSuccessGettingFolders = function (dataGet) {
-        if (dataGet.length > 1) { // if dataGet is array of folders
-            showFolders(dataGet);
-        } else { // if dataGet is a specific folder
-            showFolders(dataGet.children);
-            setFolderPath(dataGet);
-        }
     }
 
     function showFolders(folders) {
@@ -135,14 +126,14 @@ $(document).ready(function() {
 
     }
 
-    function ajaxGet(url, asyncMethod, error) {
+    function ajaxGet(url, asyncMethod, success, error) {
         $.ajax({
             url: url,
             method: "GET",
             dataType: "JSON",
             async: asyncMethod
         }).done(function (dataGet) {
-            doWhenSuccessGettingFolders(dataGet);
+            success(dataGet);
         }).fail(function () {
             alert(error);
         });
@@ -153,5 +144,7 @@ $(document).ready(function() {
             $(this).fadeOut(500);
         });
     }
+
+    init();
 
 });
