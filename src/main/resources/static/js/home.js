@@ -13,7 +13,7 @@ $(document).ready(function() {
 
     function init() {
 
-        testFunction();
+        //testFunction();
 
         $("header").load("/header.html");
         $("footer").load("/footer.html");
@@ -23,6 +23,8 @@ $(document).ready(function() {
         } else {
             getFolders1stLevel();
         }
+
+        setQuickBookmarkAddRow();
 
     }
 
@@ -108,7 +110,7 @@ $(document).ready(function() {
     }
 
     function showFolders(folders) {
-        let divToShowFolders = $("#content-main div");
+        let divToShowFolders = $("#menu-folders-tree div");
         divToShowFolders.html("");
 
         folders.forEach(function(element) {
@@ -143,6 +145,23 @@ $(document).ready(function() {
         $(".test").each(function () {
             $(this).fadeOut(500);
         });
+    }
+
+    function setQuickBookmarkAddRow() {
+        let divQuickBookmarkAdd = $("#quickBookmarkAdd")
+
+        divQuickBookmarkAdd.empty().append(
+            "<div class='input-group mb-3 pl-5 pr-5 pt-5'>" +
+                "<input type='text' class='form-control' disabled placeholder='paste or type url here ...' aria-label='URL' aria-describedby='button-url' id='input-url'>" +
+                "<button class='btn btn-outline-success disabled' type='button' id='button-url'>QUICK BOOKMARK ADD</button>" +
+            "</div>"
+        );
+
+        if (getActualFolderIdFromUrlParam() != null && getActualFolderIdFromUrlParam() !== undefined) {
+            divQuickBookmarkAdd.find("input").removeAttr("disabled");
+            divQuickBookmarkAdd.find("button").removeClass("disabled");
+        }
+
     }
 
     init();

@@ -14,7 +14,6 @@ $(document).ready(function () {
             dataType: "text"
         }).done(function(username) {
             console.log("User logged in: "+username);
-            //$("#btnLogOut").removeClass("disabled");
             $("#btnMyAccount").removeClass("disabled");
             $("#btnLogOut").removeClass("disabled");
         }).fail(function () {

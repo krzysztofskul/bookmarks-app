@@ -1,10 +1,11 @@
 // todo (to commit):
 
 # 0.3.1-SNAPSHOT
-    - /index /home1 /home2 updates
-    - logout button update/fix
+    + quick add bookmark functionality add for /home2
 
 #
+
+    - logout and myAccount buttons fix at home ver.2 //todo (?)
 
     - navigation bar for edit bookmark page
     - back to folder after deleted bookmark
@@ -24,6 +25,11 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.3.1-SNAPSHOT
+    + /index /home1 /home2 updates
+    + quick add bookmark filed created for /home2
+    + front-end updates
 
 # 0.3.1-SNAPSHOT
     + code cleaning

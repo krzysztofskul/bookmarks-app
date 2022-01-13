@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: z0041nhm
@@ -21,17 +22,14 @@
     <!--jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <!--JS files-->
-    <script src="js/index.js" type="text/javascript"></script>
-    <script src="js/home.js" type="text/javascript"></script>
+    <script src="<c:url value="/js/index.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/js/home.js"/>" type="text/javascript"></script>
 </head>
 <body>
 
 <header></header>
 
 <div id="container-main" class="ml-auto mr-auto w-75">
-    <div id="test">
-        <h1 class="test">test home page</h1>
-    </div>
 
     <div class="row p-2 border-top border-bottom">
         <div class="col-12">
@@ -41,15 +39,16 @@
         </div>
     </div>
 
+    <div id="quickBookmarkAdd"></div>
+
     <div class="row pt-2">
         <div id="menu-folders-tree" class="col-4 text-center">
-            <h1 class="test">test</h1>
             <h4>FOLDERS TREE</h4>
+            <div></div>
         </div>
 
         <div id="content-main" class="col-8 text-center">
-            <h1 class="test">test</h1>
-            <h4>...</h4>
+            <h4>CONTENT</h4>
             <div></div>
         </div>
     </div>
