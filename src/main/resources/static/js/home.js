@@ -12,6 +12,23 @@ $(document).ready(function() {
         }
     }
 
+    let successWhenSaveNewBookmark = function () {
+        window.location.reload(true);
+    }
+
+    let errorWhenSaveNewBookmark = function (xhr, status, error) {
+        alert("Error while adding new bookmark to db!");
+        console.log(xhr.status);
+    }
+
+    let successWhenDeleteBookmark = function () {
+        window.location.reload(true);
+    }
+
+    let errorWhenDeleteBookmark = function () {
+        alert("Error while deleting bookmark from db!");
+    }
+
     function init() {
 
         //testFunction();
@@ -61,6 +78,32 @@ $(document).ready(function() {
                 $(button).on("click", function () {
                     let folderId = $(this).parent().parent().attr("id").slice(9);
                     location.replace("/folders?folderId="+folderId);
+                });
+                break;
+            }
+            case "#button-url": {
+                let buttonNewUrl = $("#button-url");
+                let inputUrl = buttonNewUrl.prev();
+
+                inputUrl.on("keyup", function (event){
+                    if (event.keyCode === 13) { // pressed enter key
+                        event.preventDefault();
+                        buttonNewUrl.click();
+                    }
+                });
+
+                buttonNewUrl.on("click", function (e) {
+                    e.preventDefault();
+                    let newUrlToSave = inputUrl.val();
+                    saveNewUrl(newUrlToSave);
+                });
+                break;
+            }
+            case ".delete-bookmark-btn": {
+                $(button).on("click", function(e) {
+                    //console.log("click: "+$(this).attr());
+                    console.log("bookmark id to delete: "+$(this).attr("id").slice(19));
+                    deleteBookmark($(this).attr("id").slice(19));
                 });
                 break;
             }
@@ -142,6 +185,32 @@ $(document).ready(function() {
         });
     }
 
+    function ajaxPost(url, dataToPost, success, error) {
+        $.ajax({
+            url: url,
+            dataType: "JSON",
+            type: "POST",
+            data: {
+                'url': dataToPost
+            }
+        }).done(function(){
+            success();
+        }).fail(function(xhr, status, error) {
+            error();
+        });
+    }
+
+    function ajaxDelete(url, success, error) {
+            $.ajax({
+                url: url,
+                method: "DELETE"
+            }).done(function () {
+                success();
+            }).fail(function () {
+                error();
+            }).always(function () {});
+    }
+
     function removeTestDivs() {
         $(".test").each(function () {
             $(this).fadeOut(500);
@@ -161,6 +230,7 @@ $(document).ready(function() {
         if (getActualFolderIdFromUrlParam() != null && getActualFolderIdFromUrlParam() !== undefined) {
             divQuickBookmarkAdd.find("input").removeAttr("disabled");
             divQuickBookmarkAdd.find("button").removeClass("disabled");
+            setButtonFunctionality("#button-url");
         }
 
     }
@@ -168,14 +238,68 @@ $(document).ready(function() {
     function showBookmarks(folder) {
         let divForBookmarks = $("#content-main div");
 
-        //test
-        //divForBookmarks.append("<p>TEST BOOKMARKS FOR FOLDER ID: "+folder.id+"</p>"); //ok
 
-        //test bookmark list to show
+        function createBookmarkDiv(bookmark) {
+            return "<div class='card card-bookmark'>"+
+                "<div class='card-header'>" +
+                "<div class='bookmark-name'>"+bookmark.name+"</div>" +
+                "<div class='bookmark-buttons'>" +
+                "<a href='#' class='d-inline-block pl-1 text-danger delete-bookmark-btn' id='delete-bookmark-btn"+bookmark.id+"'>DEL</a>" +
+                "<a href='/bookmarks-app/bookmark-details/"+bookmark.id+"' class='d-inline-block text-primary pl-1'>EDIT</a>" +
+                "<a href="+bookmark.url+" class='d-inline-block text-success pl-1'>OPEN</a>" +
+                "</div> " +
+                "</div>"+
+                "<div class='card-body'>"+
+                "<a href="+bookmark.url+" class='bookmarkUrl'>"+bookmark.url+"</a>" +
+                "</div>" +
+                "<div class='card-footer'>" +
+                "<p>"+bookmark.description+"</p>"+
+                "</div> " +
+                "</div>"
+        }
+
         folder.bookmarkList.forEach(function(el) {
-            divForBookmarks.append("<p>"+el.name+"</p>")
+            divForBookmarks.append(createBookmarkDiv(el));
         });
 
+        setButtonFunctionality(".delete-bookmark-btn");
+
+    }
+
+    function saveNewUrl(newUrlToSave) {
+
+        function cancelSave() {
+            alert("Wrong url!")
+        }
+
+        function save(newUrlToSave) {
+            ajaxPost(
+                "/bookmarks-app/bookmark/quick-add-to-folder/"+getActualFolderIdFromUrlParam(),
+                newUrlToSave,
+                successWhenSaveNewBookmark,
+                errorWhenSaveNewBookmark
+            );
+        }
+
+        if (newUrlToSave.startsWith("https://") || newUrlToSave.startsWith("http://")) {
+            save(newUrlToSave);
+            return;
+        }
+        if (newUrlToSave.startsWith("www.")){
+            save("https://"+newUrlToSave)
+            return;
+        }
+
+        cancelSave();
+
+    }
+
+    function deleteBookmark(bookmarkId) {
+        ajaxDelete(
+            "/bookmarks-app/bookmarks/"+bookmarkId,
+            successWhenDeleteBookmark,
+            errorWhenDeleteBookmark
+        );
     }
 
     init();
