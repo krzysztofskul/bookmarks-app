@@ -1,7 +1,7 @@
 // todo (to commit):
 
 # 0.3.1-SNAPSHOT
-    + quick add bookmark functionality add for /home2
+    - quick add bookmark to specific folder functionality (for /home2)
 
 #
 
@@ -25,6 +25,10 @@
         - delete bookmark functionality
 
 // todo-done (committed):
+
+# 0.3.1-SNAPSHOT
+    + show bookmarks for specific folder functionality added
+    + other code updates
 
 # 0.3.1-SNAPSHOT
     + /index /home1 /home2 updates

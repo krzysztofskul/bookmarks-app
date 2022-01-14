@@ -8,6 +8,7 @@ $(document).ready(function() {
         } else { // if dataGet is a specific folder
             showFolders(dataGet.children);
             setFolderPath(dataGet);
+            showBookmarks(dataGet);
         }
     }
 
@@ -18,7 +19,7 @@ $(document).ready(function() {
         $("header").load("/header.html");
         $("footer").load("/footer.html");
         removeTestDivs();
-        if (getActualFolderIdFromUrlParam() != null || getActualFolderIdFromUrlParam() !== undefined) {
+        if (getActualFolderIdFromUrlParam() != null && getActualFolderIdFromUrlParam() !== undefined) {
             getFolder(getActualFolderIdFromUrlParam());
         } else {
             getFolders1stLevel();
@@ -161,6 +162,19 @@ $(document).ready(function() {
             divQuickBookmarkAdd.find("input").removeAttr("disabled");
             divQuickBookmarkAdd.find("button").removeClass("disabled");
         }
+
+    }
+
+    function showBookmarks(folder) {
+        let divForBookmarks = $("#content-main div");
+
+        //test
+        //divForBookmarks.append("<p>TEST BOOKMARKS FOR FOLDER ID: "+folder.id+"</p>"); //ok
+
+        //test bookmark list to show
+        folder.bookmarkList.forEach(function(el) {
+            divForBookmarks.append("<p>"+el.name+"</p>")
+        });
 
     }
 
