@@ -17,6 +17,12 @@
 
 // todo-done (committed):
 
+# 0.3.2-FINAL
+    + create new folder functionality:
+        + front-end updates
+            + created new folder button
+            + created ajax post method to add new folder
+
 # 0.3.2-SNAPSHOT
     - create new folder functionality:
         + front-end updates

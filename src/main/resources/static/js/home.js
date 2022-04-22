@@ -16,6 +16,10 @@ $(document).ready(function() {
         window.location.reload(true);
     }
 
+    let doWhenSuccessCreatingNewFolder = function() {
+        window.location.reload(true);
+    }
+
     let errorWhenSaveNewBookmark = function (xhr, status, error) {
         alert("Error while adding new bookmark to db!");
         console.log(xhr.status);
@@ -43,6 +47,7 @@ $(document).ready(function() {
         }
 
         setQuickBookmarkAddRow();
+        setAddNewFolderButtonFunctionality();
 
     }
 
@@ -200,6 +205,19 @@ $(document).ready(function() {
         });
     }
 
+    function ajaxPostNewFolderData(url, dataToPost, success, error) {
+        $.ajax({
+            url: url,
+            dataType: "JSON",
+            type: "POST",
+            data: dataToPost,
+        }).done(function(){
+            success();
+        }).fail(function(xhr, status, error) {
+            error();
+        });
+    }
+
     function ajaxDelete(url, success, error) {
             $.ajax({
                 url: url,
@@ -300,6 +318,28 @@ $(document).ready(function() {
             successWhenDeleteBookmark,
             errorWhenDeleteBookmark
         );
+    }
+
+    function setAddNewFolderButtonFunctionality() {
+        let btnAddNewFolder = $("#btn-new-folder");
+
+        // test
+        //btnAddNewFolder.text("test"); //ok
+
+        let actualFolderId = null;
+        if (getActualFolderIdFromUrlParam() != null && getActualFolderIdFromUrlParam() !== undefined) {
+            actualFolderId = getActualFolderIdFromUrlParam();
+        }
+
+        let newFolderName;
+
+        btnAddNewFolder.on("click", function () {
+            newFolderName = $("#input-new-folder-name").val();
+            // test
+            //alert("actual folder id: "+actualFolderId+"\nnew folder name: "+newFolderName); //ok
+            ajaxPostNewFolderData("/bookmarks-app/folder", {'folderName': newFolderName, 'folderParentId': actualFolderId}, doWhenSuccessCreatingNewFolder, null);
+        });
+
     }
 
     init();

@@ -48,9 +48,9 @@
                 </h4>
                 <div class="menu">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control disabled" placeholder="NEW FOLDER NAME" aria-label="folder's name" aria-describedby="basic-addon2">
+                        <input type="text" id="input-new-folder-name" class="form-control" placeholder="NEW FOLDER NAME" aria-label="folder's name" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-success disabled" type="button">+</button>
+                            <button class="btn btn-outline-success" type="button" id="btn-new-folder">+</button>
                         </div>
                     </div>
                 </div>
