@@ -1,3 +1,9 @@
+footer {
+    border-top: 1px solid gray;
+    margin-top: 2em;
+    padding: 0 1em 0 1em;
+}
+
 /**
 BOOKMARK CARD
  */
@@ -44,4 +50,43 @@ NEW FOLDER BUTTON
 
 #btn-new-folder {
 
+}
+
+/**
+FOLDER'S TREE
+ */
+
+#menu-folders-tree button {
+
+}
+
+#menu-folders-tree button {
+    margin: 0px;
+    padding: 1px;
+    width: 3em;
+}
+
+#menu-folders-tree .title {
+    border-top: 1px solid gray;
+    background-color: lightgray;
+}
+
+#menu-folders-tree .row {
+    border-left: 10px solid grey;
+    border-top: 1px solid lightgrey;
+    margin: 1em 0 0 0;
+}
+
+#menu-folders-tree .row .col {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/**
+FOLDER'S CONTENT
+ */
+
+#content-main .title {
+    border-top: 1px solid gray;
+    background-color: lightgray;
 }

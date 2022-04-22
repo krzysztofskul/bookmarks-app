@@ -29,9 +29,9 @@
 
     <header></header>
 
-    <div id="container-main" class="ml-auto mr-auto w-75">
+    <div id="container-main" class="container-fluid">
 
-        <div class="row p-2 border-top border-bottom">
+        <div class="row">
             <div class="col-12">
                 <div id="folder-path-home" class="d-inline-block btn btn-outline-dark">home</div>
                 <div id="folder-path-back" class="d-inline-block btn btn-outline-dark">back</div>
@@ -41,14 +41,25 @@
 
         <div id="quickBookmarkAdd" class="disabled"></div>
 
-        <div class="row pt-2">
-            <div id="menu-folders-tree" class="col-4 text-center">
-                <h4>FOLDERS TREE</h4>
-                <div></div>
+        <div class="row">
+            <div id="menu-folders-tree" class="col-3 text-center">
+                <h4 class="title">
+                    FOLDERS TREE
+                </h4>
+                <div class="menu">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control disabled" placeholder="NEW FOLDER NAME" aria-label="folder's name" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success disabled" type="button">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                </div>
             </div>
 
-            <div id="content-main" class="col-8 text-center">
-                <h4>CONTENT</h4>
+            <div id="content-main" class="col-9 text-center">
+                <h4 class="title">CONTENT</h4>
                 <div></div>
             </div>
         </div>

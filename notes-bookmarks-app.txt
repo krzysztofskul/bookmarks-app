@@ -15,8 +15,12 @@
 
     - folders managing (CRUD methods)
 
-
 // todo-done (committed):
+
+# 0.3.2-SNAPSHOT
+    - create new folder functionality:
+        + front-end updates
+        - back-end updates
 
 # 0.3.1-FINAL
     + delete bookmark functionality from bookmark card
