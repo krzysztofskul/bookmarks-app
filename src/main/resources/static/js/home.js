@@ -29,6 +29,10 @@ $(document).ready(function() {
         window.location.reload(true);
     }
 
+    let successWhenDeleteFolder = function () {
+        window.location.reload(true);
+    }
+
     let errorWhenDeleteBookmark = function () {
         alert("Error while deleting bookmark from db!");
     }
@@ -107,10 +111,19 @@ $(document).ready(function() {
             case ".delete-bookmark-btn": {
                 $(button).on("click", function(e) {
                     //console.log("click: "+$(this).attr());
-                    console.log("bookmark id to delete: "+$(this).attr("id").slice(19));
-                    deleteBookmark($(this).attr("id").slice(19));
+                    if (confirm("Confirm bookmark deletion...")) {
+                        console.log("bookmark id to delete: "+$(this).attr("id").slice(19));
+                        deleteBookmark($(this).attr("id").slice(19));
+                    }
                 });
                 break;
+            }
+            case ".btnDelFolder": {
+                $(button).on("click", function () {
+                   if (confirm("Confirm folder deletion (id: "+$(this).parent().parent().attr("id").slice(9)+")... (all sub-folders and bookmarks will be deleted also!)")) {
+                       deleteFolder($(this).parent().parent().attr("id").slice(9));
+                   }
+                });
             }
         }
 
@@ -165,15 +178,17 @@ $(document).ready(function() {
         folders.forEach(function(element) {
            divToShowFolders.append(
                "<div class='row p-1' id='folderId-"+element.id+"'> "+
-                   /*"<div class='col col-sm-1'>"+element.id+"</div>" +*/
+                   "<div class='col col-sm-1' style='font-size: 8px'>"+element.id+"</div>" +
                    "<div class='col col-sm-8'>"+element.name+"</div>" +
-                   "<div class='col col-sm-2'><button class='btnGoTo btn btn-sm btn-outline-primary'> >> </button></div>" +
-                   "<div class='col col-sm-2'><button class='btnDel btn btn-sm btn-outline-danger'>X</button></div>" +
+                   "<div class='col col-sm-1'><button class='btnGoTo btn btn-sm btn-outline-success'> >> </button></div>" +
+                   "<div class='col col-sm-1'><button class='btnGoTo btn btn-sm btn-outline-primary'>E</button></div>" +
+                   "<div class='col col-sm-1'><button class='btnDelFolder btn btn-sm btn-outline-danger'>X</button></div>" +
                "</div>"
            );
         });
 
         setButtonFunctionality(".btnGoTo");
+        setButtonFunctionality(".btnDelFolder");
 
     }
 
@@ -211,6 +226,7 @@ $(document).ready(function() {
             dataType: "JSON",
             type: "POST",
             data: dataToPost,
+        }).done(function(){
         }).done(function(){
             success();
         }).fail(function(xhr, status, error) {
@@ -317,6 +333,14 @@ $(document).ready(function() {
             "/bookmarks-app/bookmarks/"+bookmarkId,
             successWhenDeleteBookmark,
             errorWhenDeleteBookmark
+        );
+    }
+
+    function deleteFolder(folderId) {
+        ajaxDelete(
+            "/bookmarks-app/folder/"+folderId,
+            successWhenDeleteFolder,
+            null
         );
     }
 

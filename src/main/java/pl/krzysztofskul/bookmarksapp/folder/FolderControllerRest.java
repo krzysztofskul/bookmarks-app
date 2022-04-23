@@ -52,4 +52,11 @@ public class FolderControllerRest {
         return folderService.save(folder);
     }
 
+    @DeleteMapping("/folder/{id}")
+    public void deleteFolderById(
+            @PathVariable (name = "id") Long folderId
+    ) {
+        folderService.delete(folderId);
+    }
+
 }

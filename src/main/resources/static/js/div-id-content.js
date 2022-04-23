@@ -429,7 +429,9 @@ $(document).ready(function () {
                     let bookmarkDelBtn = $('#delete-bookmark-btn'+e.id);
                     bookmarkDelBtn.on("click", function (){
                        //alert("test delete bookmark id="+e.id+" button!"); // ok
-                        deleteBookmark(e.id, folderId);
+                        if (confirm("Confirm deletion...")) {
+                            deleteBookmark(e.id, folderId);
+                        }
 
                     });
                 });

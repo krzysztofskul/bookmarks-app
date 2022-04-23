@@ -46,7 +46,7 @@ public class Folder implements Serializable {
 
     private String path;
 
-    @OneToMany(mappedBy = "folder", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "folder", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 //    @JsonManagedReference
     private List<Bookmark> bookmarkList = new ArrayList<>();
 

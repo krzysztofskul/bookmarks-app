@@ -1,8 +1,11 @@
 package pl.krzysztofskul.bookmarksapp.folder;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.krzysztofskul.bookmarksapp.bookmark.Bookmark;
+import pl.krzysztofskul.bookmarksapp.bookmark.BookmarkService;
 
 import java.util.List;
 
@@ -11,10 +14,15 @@ import java.util.List;
 public class FolderService {
 
     private FolderRepo folderRepo;
+    private BookmarkService bookmarkService;
 
     @Autowired
-    public FolderService(FolderRepo folderRepo) {
+    public FolderService(
+            FolderRepo folderRepo,
+            BookmarkService bookmarkService
+    ) {
         this.folderRepo = folderRepo;
+        this.bookmarkService = bookmarkService;
     }
 
     public Folder save(Folder folder) {
@@ -31,4 +39,20 @@ public class FolderService {
         return folder;
     }
 
+    public void delete(Long folderId) {
+        Folder folder = this.loadById(folderId);
+        Hibernate.initialize(folder.getBookmarkList());
+        Hibernate.initialize(folder.getChildren());
+        if (folder.getChildren() != null & folder.getChildren().size() > 0) {
+            for (Folder children : folder.getChildren()) {
+                this.delete(children.getId());
+            }
+        }
+//        if (folder.getBookmarkList() != null & folder.getBookmarkList().size() > 0) {
+//            for (Bookmark bookmark : folder.getBookmarkList()) {
+//                bookmarkService.delete(bookmark.getId());
+//            }
+//        }
+        folderRepo.delete(folder);
+    }
 }

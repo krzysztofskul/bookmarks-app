@@ -15,7 +15,21 @@
 
     - folders managing (CRUD methods)
 
+# 0.3.2.1
+    - add the edition of folder name functionality
+        + added edit button
+        - to create edit form
+    + added the delete folder functionality
+    + added the window confirming deletion for folder and bookmark
+
 // todo-done (committed):
+
+# 0.3.2.1
+    - add the edition of folder name functionality
+        + added edit button
+        - to create edit form
+    + added the delete folder functionality
+    + added the window confirming deletion for folder and bookmark
 
 # 0.3.2-FINAL
     + create new folder functionality:

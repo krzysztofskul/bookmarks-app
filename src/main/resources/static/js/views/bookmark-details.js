@@ -86,15 +86,17 @@ $(document).ready(function () {
         });
 
         $("#btnDelBookmark").on("click", function() {
-            $.ajax({
-                url: "/bookmarks-app/bookmarks/" + loadedBookmark.id,
-                method: "DELETE"
-            }).done(function () {
-                alert("success! bookmark deleted!");
-                location.replace("/");
-            }).fail(function () {
-                alert("failed! bookmark not deleted!");
-            }).always(function () {});
+            if (confirm("Confirm that you want to delete bookmark...")) {
+                $.ajax({
+                    url: "/bookmarks-app/bookmarks/" + loadedBookmark.id,
+                    method: "DELETE"
+                }).done(function () {
+                    alert("success! bookmark deleted!");
+                    location.replace("/");
+                }).fail(function () {
+                    alert("failed! bookmark not deleted!");
+                }).always(function () {});
+            }
 
         })
 
