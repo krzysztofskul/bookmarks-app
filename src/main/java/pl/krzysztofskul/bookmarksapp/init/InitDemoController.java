@@ -9,7 +9,7 @@ import pl.krzysztofskul.bookmarksapp.folder.Folder;
 import pl.krzysztofskul.bookmarksapp.folder.FolderService;
 
 @RestController
-@RequestMapping("/bookmarks-app")
+@RequestMapping("/")
 public class InitDemoController {
 
     private FolderService folderService;

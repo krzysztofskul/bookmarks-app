@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     function getUserLoggedIn() {
         $.ajax({
-            url: "/bookmarks-app/user-logged-in",
+            url: "/user-logged-in",
             data: {},
             type: "GET",
             dataType: "text"

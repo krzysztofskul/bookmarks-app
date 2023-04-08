@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/bookmarks-app")
+@RequestMapping("/")
 public class FolderControllerRest {
 
     private FolderService folderService;

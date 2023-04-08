@@ -20,6 +20,7 @@ import java.io.Serializable;
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
+@Table(name = "bookmarks")
 public class Bookmark implements Serializable {
 
     @Id

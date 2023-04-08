@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.bookmarksapp.folder.FolderService;
 
 @RestController
-@RequestMapping("/bookmarks-app")
+@RequestMapping("/")
 public class BookmarkControllerRest {
 
     private BookmarkService bookmarkService;

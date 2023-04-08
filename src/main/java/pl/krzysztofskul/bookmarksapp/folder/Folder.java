@@ -24,6 +24,7 @@ import java.util.List;
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
+@Table(name = "folders")
 public class Folder implements Serializable {
 
     @Id

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/bookmarks-app")
+@RequestMapping("/")
 public class UserControllerRest {
 
     @GetMapping("/user-logged-in")

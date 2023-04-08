@@ -41,8 +41,8 @@ $(document).ready(function() {
 
         //testFunction();
 
-        $("header").load("/header.html");
-        $("footer").load("/footer.html");
+        $("header").load("./header.html");
+        $("footer").load("./footer.html");
         removeTestDivs();
         if (getActualFolderIdFromUrlParam() != null && getActualFolderIdFromUrlParam() !== undefined) {
             getFolder(getActualFolderIdFromUrlParam());
@@ -79,14 +79,14 @@ $(document).ready(function() {
             case ".btnPathGoTo": {
                 $(button).on("click", function () {
                     let folderId = $(this).attr("id").slice(9);
-                    location.replace("/folders?folderId=" + folderId);
+                    location.replace("/bookmarks-app/folders?folderId=" + folderId);
                 });
                 break;
             }
             case ".btnGoTo": {
                 $(button).on("click", function () {
                     let folderId = $(this).parent().parent().attr("id").slice(9);
-                    location.replace("/folders?folderId="+folderId);
+                    location.replace("/bookmarks-app/folders?folderId="+folderId);
                 });
                 break;
             }
@@ -143,7 +143,7 @@ $(document).ready(function() {
             );
 
             $("#folder-path-home").on("click", function () {
-                location.replace("/home");
+                location.replace("/bookmarks-app/home");
                 //location.href = "/home";
             });
 
@@ -151,9 +151,9 @@ $(document).ready(function() {
                 let folderId;
                 if ($(this).next().children().length > 1) {
                     folderId = $(this).next().children().last().prev().children().last().attr("id").slice(9);
-                    location.replace("/folders?folderId="+folderId);
+                    location.replace("/bookmarks-app/folders?folderId="+folderId);
                 } else {
-                    location.replace("/home");
+                    location.replace("/bookmarks-app/home");
                 }
             });
 
