@@ -13,12 +13,14 @@
     <groupId>pl.krzysztofskul</groupId>
     <artifactId>bookmarks-app</artifactId>
     <version>0.3.2-FINAL</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>bookmarks-app</name>
     <description>Demo app for WWW bookmarks managing</description>
 
     <properties>
         <java.version>8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+ 		<maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
