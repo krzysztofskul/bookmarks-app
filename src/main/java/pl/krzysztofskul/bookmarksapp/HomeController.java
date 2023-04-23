@@ -20,5 +20,10 @@ public class HomeController {
     ) {
         return "home";
     }
+    @GetMapping("/")
+    public String root(
+    ) {
+        return "home";
+    }
 
 }
