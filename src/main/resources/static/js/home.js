@@ -3,7 +3,7 @@ $(document).ready(function() {
     //alert("test home.js!"); //ok
 
     let doWhenSuccessGettingFolders = function (dataGet) {
-        if (dataGet.length > 1) { // if dataGet is array of folders
+        if (dataGet.length >= 1) { // if dataGet is array of folders
             showFolders(dataGet);
         } else { // if dataGet is a specific folder
             showFolders(dataGet.children);
@@ -181,7 +181,7 @@ $(document).ready(function() {
                    "<div class='col col-sm-1' style='font-size: 8px'>"+element.id+"</div>" +
                    "<div class='col col-sm-8'>"+element.name+"</div>" +
                    "<div class='col col-sm-1'><button class='btnGoTo btn btn-sm btn-outline-success'> >> </button></div>" +
-                   "<div class='col col-sm-1'><button class='btnGoTo btn btn-sm btn-outline-primary'>E</button></div>" +
+                   /*"<div class='col col-sm-1'><button class='btnGoTo btn btn-sm btn-outline-primary'>E</button></div>" +*/
                    "<div class='col col-sm-1'><button class='btnDelFolder btn btn-sm btn-outline-danger'>X</button></div>" +
                "</div>"
            );

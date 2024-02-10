@@ -44,7 +44,7 @@
         <div class="row">
             <div id="menu-folders-tree" class="col-3 text-center">
                 <h4 class="title">
-                    FOLDERS TREE
+                    <img src="/pics/ico/menu_FILL0_wght400_GRAD0_opsz24.svg" alt="FOLDERS"/>
                 </h4>
                 <div class="menu">
                     <div class="input-group mb-3">
@@ -59,7 +59,9 @@
             </div>
 
             <div id="content-main" class="col-9 text-center">
-                <h4 class="title">CONTENT</h4>
+                <h4 class="title">
+					<img src="/pics/ico/apps_FILL0_wght400_GRAD0_opsz24.svg" alt="BOOKMARKS"/>
+                </h4>
                 <div></div>
             </div>
         </div>

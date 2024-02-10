@@ -3,7 +3,7 @@ $(document).ready(function () {
     // alert("test div-id-content.js"); // ok
 
     let folderAll;
-    let folder1stLeverList;
+    let folder1stLevelList;
     let actualFolderId;
     let actualFolder;
 
@@ -292,7 +292,7 @@ $(document).ready(function () {
         // sub-folder list
         if (folder == null) {
 
-            folder1stLeverList.forEach(function (e) {
+            folder1stLevelList.forEach(function (e) {
                 $("#folder-actual-div").append(
 
                     "<div class='row p-1'>" +
@@ -450,8 +450,8 @@ $(document).ready(function () {
             method: "GET",
             dataType: "JSON"
         }).done(function (folderList) {
-            folder1stLeverList = folderList;
-            console.log(folder1stLeverList);
+            folder1stLevelList = folderList;
+            console.log(folder1stLevelList);
         }).fail(function() {
             alert("Error while loading 1st level folder list!");
         });
@@ -477,7 +477,7 @@ $(document).ready(function () {
                 actualFolder = dataGet;
                 actualFolderId = dataGet.id;
             } else { // get folders list
-                folder1stLeverList = dataGet;
+                folder1stLevelList = dataGet;
                 actualFolderId = 0;
                 actualFolder = null;
             }
@@ -523,7 +523,7 @@ $(document).ready(function () {
                 actualFolder = dataGet;
                 actualFolderId = dataGet.id;
             } else { // get folders list
-                folder1stLeverList = dataGet;
+                folder1stLevelList = dataGet;
                 actualFolderId = 0;
                 actualFolder = null;
             }

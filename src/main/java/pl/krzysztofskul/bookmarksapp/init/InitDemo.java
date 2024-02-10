@@ -82,4 +82,12 @@ public class InitDemo {
         }
     }
 
+	public void reset() {
+	    InitDemo.initDemo = null;
+
+	    InitDemo.demoFolderList = new ArrayList<>();
+	    InitDemo.demoBookmarkList = new ArrayList<>();
+		
+	}
+
 }

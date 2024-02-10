@@ -21,9 +21,12 @@ public class InitDemoController {
 
     @GetMapping("/test")
     public ModelAndView test() {
-        for (Folder folder : InitDemo.getInstance().getDemoFolderList()) {
-            folderService.save(folder);
-        }
+    	if (folderService.loadAll().size() == 0) {
+	        for (Folder folder : InitDemo.getInstance().getDemoFolderList()) {
+	            folderService.save(folder);
+	            InitDemo.getInstance().reset();
+	        }
+    	}
         return new ModelAndView("redirect:/");
     }
 

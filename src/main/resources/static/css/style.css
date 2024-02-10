@@ -4,6 +4,13 @@ footer {
     padding: 0 1em 0 1em;
 }
 
+.text-logo {
+	font-size: 24px;
+	font-style: italic;
+	color: dodgerblue;
+	text-shadow: 5px 5px 2px blue;
+}
+
 /**
 BOOKMARK CARD
  */
@@ -56,19 +63,23 @@ NEW FOLDER BUTTON
 FOLDER'S TREE
  */
 
-#menu-folders-tree button {
-
+#menu-folders-tree {
+	border-right: 1px solid gray;
 }
 
 #menu-folders-tree button {
-    margin: 0px;
+}
+
+#menu-folders-tree button {
+	
+    margin: 1px;
     padding: 1px;
-    width: 3em;
+    width: 2em;
 }
 
 #menu-folders-tree .title {
-    border-top: 1px solid gray;
-    background-color: lightgray;
+    /*border-top: 1px solid gray;
+    background-color: lightgray;*/
 }
 
 #menu-folders-tree .row {
@@ -87,6 +98,6 @@ FOLDER'S CONTENT
  */
 
 #content-main .title {
-    border-top: 1px solid gray;
-    background-color: lightgray;
+    /*border-top: 1px solid gray;
+    background-color: lightgray;*/
 }
