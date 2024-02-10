@@ -67,11 +67,11 @@ $(document).ready(function() {
     }
 
     function getFolders1stLevel() {
-        ajaxGet("/bookmarks-app/folders/1st-level", true, doWhenSuccessGettingFolders, "Error while getting 1st level folders!");
+        ajaxGet("/folders/1st-level", true, doWhenSuccessGettingFolders, "Error while getting 1st level folders!");
     }
 
     function getFolder(folderId) {
-        ajaxGet("/bookmarks-app/folder/"+folderId, true, doWhenSuccessGettingFolders, "Error while getting the folder!");
+        ajaxGet("/folder/"+folderId, true, doWhenSuccessGettingFolders, "Error while getting the folder!");
     }
 
     function setButtonFunctionality(button) {
@@ -79,14 +79,14 @@ $(document).ready(function() {
             case ".btnPathGoTo": {
                 $(button).on("click", function () {
                     let folderId = $(this).attr("id").slice(9);
-                    location.replace("/bookmarks-app/folders?folderId=" + folderId);
+                    location.replace("/folders?folderId=" + folderId);
                 });
                 break;
             }
             case ".btnGoTo": {
                 $(button).on("click", function () {
                     let folderId = $(this).parent().parent().attr("id").slice(9);
-                    location.replace("/bookmarks-app/folders?folderId="+folderId);
+                    location.replace("/folders?folderId="+folderId);
                 });
                 break;
             }
@@ -143,7 +143,7 @@ $(document).ready(function() {
             );
 
             $("#folder-path-home").on("click", function () {
-                location.replace("/bookmarks-app/home");
+                location.replace("/home");
                 //location.href = "/home";
             });
 
@@ -151,19 +151,19 @@ $(document).ready(function() {
                 let folderId;
                 if ($(this).next().children().length > 1) {
                     folderId = $(this).next().children().last().prev().children().last().attr("id").slice(9);
-                    location.replace("/bookmarks-app/folders?folderId="+folderId);
+                    location.replace("/folders?folderId="+folderId);
                 } else {
-                    location.replace("/bookmarks-app/home");
+                    location.replace("/home");
                 }
             });
 
             if (folderGet.parent != null) {
                 //buildFolderPath(folderGet.parent);
-                ajaxGet("/bookmarks-app/folder/"+folderGet.parent, false, doWhenSuccessWhenGettingFolderToBuildPath, "Error while get folder to build folder path!");
+                ajaxGet("/folder/"+folderGet.parent, false, doWhenSuccessWhenGettingFolderToBuildPath, "Error while get folder to build folder path!");
             }
         }
         function buildFolderPath() {
-            ajaxGet("/bookmarks-app/folder/"+folderId, false, doWhenSuccessWhenGettingFolderToBuildPath, "Error while get folder to build folder path!");
+            ajaxGet("/folder/"+folderId, false, doWhenSuccessWhenGettingFolderToBuildPath, "Error while get folder to build folder path!");
         }
 
         divToRefresh.empty();
@@ -279,7 +279,7 @@ $(document).ready(function() {
                 "<div class='bookmark-name'>"+bookmark.name+"</div>" +
                 "<div class='bookmark-buttons'>" +
                 "<a href='#' class='d-inline-block pl-1 text-danger delete-bookmark-btn' id='delete-bookmark-btn"+bookmark.id+"'>DEL</a>" +
-                "<a href='/bookmarks-app/bookmark-details/"+bookmark.id+"' class='d-inline-block text-primary pl-1'>EDIT</a>" +
+                "<a href='/bookmark-details/"+bookmark.id+"' class='d-inline-block text-primary pl-1'>EDIT</a>" +
                 "<a href="+bookmark.url+" class='d-inline-block text-success pl-1'>OPEN</a>" +
                 "</div> " +
                 "</div>"+
@@ -308,7 +308,7 @@ $(document).ready(function() {
 
         function save(newUrlToSave) {
             ajaxPost(
-                "/bookmarks-app/bookmark/quick-add-to-folder/"+getActualFolderIdFromUrlParam(),
+                "/bookmark/quick-add-to-folder/"+getActualFolderIdFromUrlParam(),
                 newUrlToSave,
                 successWhenSaveNewBookmark,
                 errorWhenSaveNewBookmark
@@ -330,7 +330,7 @@ $(document).ready(function() {
 
     function deleteBookmark(bookmarkId) {
         ajaxDelete(
-            "/bookmarks-app/bookmarks/"+bookmarkId,
+            "/bookmarks/"+bookmarkId,
             successWhenDeleteBookmark,
             errorWhenDeleteBookmark
         );
@@ -338,7 +338,7 @@ $(document).ready(function() {
 
     function deleteFolder(folderId) {
         ajaxDelete(
-            "/bookmarks-app/folder/"+folderId,
+            "/folder/"+folderId,
             successWhenDeleteFolder,
             null
         );
@@ -361,7 +361,7 @@ $(document).ready(function() {
             newFolderName = $("#input-new-folder-name").val();
             // test
             //alert("actual folder id: "+actualFolderId+"\nnew folder name: "+newFolderName); //ok
-            ajaxPostNewFolderData("/bookmarks-app/folder", {'folderName': newFolderName, 'folderParentId': actualFolderId}, doWhenSuccessCreatingNewFolder, null);
+            ajaxPostNewFolderData("/folder", {'folderName': newFolderName, 'folderParentId': actualFolderId}, doWhenSuccessCreatingNewFolder, null);
         });
 
     }

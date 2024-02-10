@@ -20,7 +20,7 @@ $(document).ready(function () {
 
     function getAllFolders() {
         $.ajax({
-            url: "/bookmarks-app/folders/all",
+            url: "/folders/all",
             data: {},
             method: "GET",
             dataType: "JSON"
@@ -36,7 +36,7 @@ $(document).ready(function () {
 
         if (folderId != null) {
             $.ajax({
-                url: "/bookmarks-app/folder/" + folderId,
+                url: "/folder/" + folderId,
                 data: {},
                 method: "GET",
                 dataType: "JSON"
@@ -72,7 +72,7 @@ $(document).ready(function () {
             "<div class='bookmark-name'>"+bookmark.name+"</div>" +
             "<div class='bookmark-buttons'>" +
             "<a href='#' class='d-inline-block pl-1 text-danger' id='delete-bookmark-btn"+bookmark.id+"'>DEL</a>" +
-            "<a href='/bookmarks-app/bookmark-details/"+bookmark.id+"' class='d-inline-block text-primary pl-1'>EDIT</a>" +
+            "<a href='/bookmark-details/"+bookmark.id+"' class='d-inline-block text-primary pl-1'>EDIT</a>" +
             "<a href='#' class='d-inline-block text-success pl-1'>OPEN</a>" +
             "</div> " +
             "</div>"+
@@ -174,7 +174,7 @@ $(document).ready(function () {
 
         function save(newUrlToSave) {
             $.ajax({
-                url: "/bookmarks-app/bookmark/quick-add-to-folder/"+actualFolderId,
+                url: "/bookmark/quick-add-to-folder/"+actualFolderId,
                 dataType: "JSON",
                 type: "POST",
                 data: {
@@ -364,7 +364,7 @@ $(document).ready(function () {
                             folderParentId = actualFolder.id;
                         }
                         $.ajax({
-                            url: "/bookmarks-app/folder/",
+                            url: "/folder/",
                             dataType: "text",
                             type: "POST",
                             data: {
@@ -392,7 +392,7 @@ $(document).ready(function () {
     function deleteBookmark(id, backToFolderId) {
         //alert("Test delete bookmark button!");
         $.ajax({
-           url: "/bookmarks-app/bookmarks/"+id,
+           url: "/bookmarks/"+id,
            type: 'DELETE'
         }).done(function (){
             alert("Bookmark deleted!");
@@ -445,7 +445,7 @@ $(document).ready(function () {
 
     function get1stLevelFolders() {
         $.ajax({
-            url: "/bookmarks-app/folders/1st-level",
+            url: "/folders/1st-level",
             data: {},
             method: "GET",
             dataType: "JSON"
@@ -462,9 +462,9 @@ $(document).ready(function () {
         let url;
 
         if (folder != null) {
-            url = "/bookmarks-app/folder/"+folder.id;
+            url = "/folder/"+folder.id;
         } else if (folder == null) {
-            url = "/bookmarks-app/folders/1st-level"
+            url = "/folders/1st-level"
         }
 
         $.ajax({
@@ -508,9 +508,9 @@ $(document).ready(function () {
         let url;
 
         if (folderId != null) {
-            url = "/bookmarks-app/folder/"+folderId;
+            url = "/folder/"+folderId;
         } else if (folderId == null) {
-            url = "/bookmarks-app/folders/1st-level"
+            url = "/folders/1st-level"
         }
 
         $.ajax({

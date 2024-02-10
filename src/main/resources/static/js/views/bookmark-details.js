@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     function loadBookmark() {
         $.ajax({
-            url: "/bookmarks-app/bookmark/"+bookmarkId,
+            url: "/bookmark/"+bookmarkId,
             data: {},
             type: "GET",
             dataType: "json"
@@ -88,7 +88,7 @@ $(document).ready(function () {
         $("#btnDelBookmark").on("click", function() {
             if (confirm("Confirm that you want to delete bookmark...")) {
                 $.ajax({
-                    url: "/bookmarks-app/bookmarks/" + loadedBookmark.id,
+                    url: "/bookmarks/" + loadedBookmark.id,
                     method: "DELETE"
                 }).done(function () {
                     alert("success! bookmark deleted!");
@@ -105,7 +105,7 @@ $(document).ready(function () {
     function putEditedBookmark() {
         //alert("test! btn save works!"); //ok
         $.ajax({
-            url: "/bookmarks-app/bookmarks/" + loadedBookmark.id,
+            url: "/bookmarks/" + loadedBookmark.id,
             method: "PUT",
             dataType: "json",
             data: loadedBookmark

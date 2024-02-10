@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -12,7 +12,7 @@
 
     <groupId>pl.krzysztofskul</groupId>
     <artifactId>bookmarks-app</artifactId>
-    <version>0.3.2-FINAL</version>
+    <version>0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>bookmarks-app</name>
     <description>Demo app for WWW bookmarks managing</description>
@@ -65,10 +65,6 @@
             <!--<scope>runtime</scope>-->
             <version>8.0.17</version>
         </dependency>
-		<dependency>
-		  <groupId>org.postgresql</groupId>
-		  <artifactId>postgresql</artifactId>
-		</dependency>
 		<dependency>
 		  <groupId>org.projectlombok</groupId>
 		  <artifactId>lombok</artifactId>
