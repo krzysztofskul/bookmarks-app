@@ -3,6 +3,8 @@ package pl.krzysztofskul.bookmarksapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 import pl.krzysztofskul.bookmarksapp.folder.FolderService;
 
 @Controller
@@ -26,4 +28,9 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/login")
+    public ModelAndView login() {
+       return new ModelAndView("login");
+    }
+    
 }

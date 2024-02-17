@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: z0041nhm
@@ -27,7 +28,9 @@
 </head>
 <body>
 
-    <header></header>
+    <header>
+    	<jsp:include page="header.jsp"/>
+    </header>
 
     <div id="container-main" class="container-fluid">
 

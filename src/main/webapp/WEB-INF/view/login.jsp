@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,20 +14,23 @@
     <!--jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <!--JS files-->
-    <script src="/js/login.js" type="text/javascript"></script>
+    <script src="/resources/static/js/login.js" type="text/javascript"></script>
+    <%-- <script src="<c:url value="/js/login.js"/>" type="text/javascript"></script> --%>
 
 </head>
 <body>
 
     <div class="container-fluid">
 
-        <header></header>
+        <header>
+        	<jsp:include page="header.jsp"/>
+        </header>
 
         <div id="content">
             <form name="login" action="/login" method="post">
             <div class="card w-50 ml-auto mr-auto">
                 <div class="card-header text-center">
-                    <h5>LOG IN FORM HTML</h5>
+                    <h5>LOG IN FORM JSP</h5>
                 </div>
                 <div class="card-body ml-auto mr-auto">
 

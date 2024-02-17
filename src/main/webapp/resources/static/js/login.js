@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    console.log("test login.js/jquery for login.html!") //ok
+    //console.log("test login.js/jquery for login.html!") //ok
 
-/*    $("header").load("/header.html");
-    $("footer").load("/footer.html");*/
+	/*$("header").load("/header.html");*/
+    $("footer").load("/footer.html");
 
     loginAsGuestFunc();
 
