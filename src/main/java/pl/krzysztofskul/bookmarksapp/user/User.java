@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,9 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
-
-
+import pl.krzysztofskul.bookmarksapp.bookmark.Bookmark;
+import pl.krzysztofskul.bookmarksapp.folder.Folder;
 
 @Entity
 public class User {
@@ -32,6 +34,12 @@ public class User {
      inverseJoinColumns = @JoinColumn(name = "role_id"))
   private List<Role> roles;
 
+  @OneToMany(mappedBy = "user")
+  private List<Folder> folders = new ArrayList<Folder>();
+  
+//  @OneToMany(mappedBy = "parent", cascade = CascadeType.PERSIST)
+//  private List<Bookmark> bookmarks = new ArrayList<Bookmark>();
+  
   public User(){}
 
   public User( String username, String password, Role role){

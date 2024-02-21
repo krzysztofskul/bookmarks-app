@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.krzysztofskul.bookmarksapp.bookmark.Bookmark;
-
+import pl.krzysztofskul.bookmarksapp.user.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -51,13 +51,31 @@ public class Folder implements Serializable {
 //    @JsonManagedReference
     private List<Bookmark> bookmarkList = new ArrayList<>();
 
+    @ManyToOne
+    private User user;
+    
     public Folder(String name) {
         this.name = name;
     }
+    
+//    public Folder(String name, User user) {
+//        this.name = name;
+//        if (null != user) {
+//        	this.user = user;
+//        }
+//    }
 
     public Folder(Folder parent, String name) {
         this.parent = parent;
         this.name = name;
+    }
+
+    public Folder(Folder parent, String name, User user) {
+    	this.parent = parent;
+    	this.name = name;
+        if (null != user) {
+        	this.user = user;
+        }
     }
 
     public void addChildren(Folder folder) {

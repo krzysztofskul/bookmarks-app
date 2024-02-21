@@ -29,9 +29,11 @@ public class InitDemoData {
 	        roleRepository.save(roleAdmin);
 	        roleRepository.save(roleUser);
 	        User userAdmin = new User("useradmin", passwordEncoder.encode("test"), roleAdmin);
-	        User userReader = new User("userguest", passwordEncoder.encode("test"), roleUser);
+	        User userGuest = new User("userguest", passwordEncoder.encode("test"), roleUser);
+	        User userTest = new User("usertest", passwordEncoder.encode("test"), roleUser);
 	        userRepository.save(userAdmin);
-	        userRepository.save(userReader);
+	        userRepository.save(userGuest);
+	        userRepository.save(userTest);
 	        System.out.println("Demo data saved successfully.");
 	     }
 	  }

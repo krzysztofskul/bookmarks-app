@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.krzysztofskul.bookmarksapp.folder.Folder;
-
+import pl.krzysztofskul.bookmarksapp.user.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -43,12 +43,23 @@ public class Bookmark implements Serializable {
     // todo
     //private List<Tag> tagList;
 
+//    @ManyToOne
+//    private User user;
 
     public Bookmark(String name, String url, String description) {
         this.name = name;
         this.url = url;
         this.description = description;
     }
+
+//    public Bookmark(String name, String url, String description, User user) {
+//    	this.name = name;
+//    	this.url = url;
+//    	this.description = description;
+//    	if (null != user) {
+//    		this.user = user;
+//    	}
+//    }
 
     public Bookmark(String url) {
         this.name = url;
